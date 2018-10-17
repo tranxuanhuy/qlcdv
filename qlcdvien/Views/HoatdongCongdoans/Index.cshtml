@@ -1,0 +1,72 @@
+﻿@model IEnumerable<qlcdvien.Models.HoatdongCongdoan>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<!-- Đoạn cần thêm -->
+@using (Html.BeginForm())
+{
+<p>
+    Title: @Html.TextBox("Firstdate") @Html.TextBox("Enddate") <input type="submit" value="Tìm kiếm" />
+</p>
+}
+<!-- Kết thúc -->
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.AspNetUser.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NoiDung)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tieude)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Anhhoatdong)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ngaydang)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.daDuyet)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.AspNetUser.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NoiDung)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tieude)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Anhhoatdong)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ngaydang)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.daDuyet)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Hoatdong_Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Hoatdong_Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Hoatdong_Id })
+            </td>
+        </tr>
+    }
+
+</table>

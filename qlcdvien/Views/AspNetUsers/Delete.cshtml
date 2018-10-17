@@ -1,0 +1,320 @@
+﻿@model qlcdvien.Models.AspNetUser
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>AspNetUser</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CapCongDoan.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CapCongDoan.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmailConfirmed)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmailConfirmed)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PasswordHash)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PasswordHash)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SecurityStamp)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SecurityStamp)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PhoneNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PhoneNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PhoneNumberConfirmed)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PhoneNumberConfirmed)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TwoFactorEnabled)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TwoFactorEnabled)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LockoutEndDateUtc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LockoutEndDateUtc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LockoutEnabled)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LockoutEnabled)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AccessFailedCount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AccessFailedCount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DOB)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DOB)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.sex)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sex)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.noisinh)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.noisinh)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.quequan)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.quequan)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HKTT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HKTT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tamtru)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tamtru)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.chucvuChinhquyen)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.chucvuChinhquyen)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.chucvuDoanthe)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.chucvuDoanthe)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.vanhoa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.vanhoa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.chuyenmon)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.chuyenmon)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.hocvi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.hocvi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.hocham)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.hocham)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tinhoc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tinhoc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ngoaingu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ngoaingu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.imageurl)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.imageurl)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tongiao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tongiao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dantoc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dantoc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cmnd)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cmnd)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.noicapcmnd)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.noicapcmnd)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ngaycapcmnd)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ngaycapcmnd)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.truongcongdoanbophan)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.truongcongdoanbophan)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.truonglopdaotao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.truonglopdaotao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nangkhieu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nangkhieu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.hanche)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.hanche)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

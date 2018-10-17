@@ -1,0 +1,72 @@
+﻿@model qlcdvien.Models.HoatdongCongdoan
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>HoatdongCongdoan</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.AspNetUser.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AspNetUser.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NoiDung)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NoiDung)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tieude)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tieude)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Anhhoatdong)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Anhhoatdong)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ngaydang)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ngaydang)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.daDuyet)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.daDuyet)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
