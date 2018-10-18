@@ -1,0 +1,37 @@
+﻿<html>
+<head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load('current', { packages: ["orgchart"] });
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+            $.ajax({
+                type: "POST",
+                url: "/CapCongDoans/GetChartData",
+
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (r) {
+                    var data1 = new google.visualization.DataTable();
+                    data1.addColumn('string', 'Entity');
+                    data1.addColumn('string', 'ParentEntity');
+                    data1.addColumn('string', 'ToolTip');
+                    data1.addRows(r);
+                    var chart = new google.visualization.OrgChart(document.getElementById('chart_div'));
+                    chart.draw(data1, { allowHtml: true ,size:'large' });
+                },
+                failure: function (r) {
+                    alert(r.d);
+                },
+                error: function (r) {
+                    alert(r.d);
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+    <div id="chart_div"></div>
+</body>
+</html>

@@ -294,6 +294,7 @@
     <Content Include="Views\CapCongDoans\Details.cshtml" />
     <Content Include="Views\CapCongDoans\Edit.cshtml" />
     <Content Include="Views\CapCongDoans\Index.cshtml" />
+    <Content Include="Views\CapCongDoans\Treeview.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

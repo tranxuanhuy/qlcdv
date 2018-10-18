@@ -6,6 +6,8 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
+using System.Web.Services;
 using qlcdvien.Models;
 
 namespace qlcdvien.Controllers
@@ -19,7 +21,36 @@ namespace qlcdvien.Controllers
         {
             return View(db.CapCongDoans.ToList());
         }
+        public ActionResult Treeview()
+        {
+            return View();
+        }
+        [WebMethod]
+        public string GetChartData()
+        {
 
+            List<object> chartData = new List<object>();
+            var content = db.CapCongDoans.Select(s => new
+            {
+                s.Capcongdoan_id,
+                s.name,
+                s.parent
+            });
+            foreach (var item in content)
+            {
+                CapCongDoan fh = db.CapCongDoans.Find(item.parent);
+                string currentName1 = fh == null ? "" : db.Entry(fh).Property(u => u.name).CurrentValue;
+                chartData.Add(new object[]
+                    {
+                        item.name,currentName1,""
+                    });
+            }
+
+
+            var jsonSerialiser = new JavaScriptSerializer();
+            var json = jsonSerialiser.Serialize(chartData);
+            return json;
+        }
         // GET: CapCongDoans/Details/5
         public ActionResult Details(int? id)
         {
@@ -38,6 +69,9 @@ namespace qlcdvien.Controllers
         // GET: CapCongDoans/Create
         public ActionResult Create()
         {
+            var categories = from c in db.CapCongDoans select c;
+            ViewBag.categoryID = new SelectList(categories, "Capcongdoan_id", "name"); // danh sách Category
+
             return View();
         }
 
@@ -46,8 +80,9 @@ namespace qlcdvien.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Capcongdoan_id,name,parent")] CapCongDoan capCongDoan)
+        public ActionResult Create([Bind(Include = "Capcongdoan_id,name")] CapCongDoan capCongDoan, int categoryID = 0)
         {
+            capCongDoan.parent = categoryID;
             if (ModelState.IsValid)
             {
                 db.CapCongDoans.Add(capCongDoan);
