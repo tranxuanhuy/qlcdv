@@ -1,0 +1,84 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Dynamic Tree</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+
+    <script src="~/Content/ace-master/assets/js/jquery.min.js"></script>
+    <link href="~/Content/bootstrap-treeview-master/public/css/bootstrap-treeview.css" rel="stylesheet" />
+    <script src="~/Content/bootstrap-treeview-master/public/js/bootstrap-treeview.js"></script>
+
+</head>
+<body>
+    <div id="default-tree"></div>
+    <div id="selectable-output"></div>
+    <script type="text/javascript">
+        jQuery(function ($) {
+            /**/
+            var json = [{ 'text': 'Parent1', 'nodes': [{ 'text': 'Child1', 'nodes': [{ 'text': 'Grandchild1' }, { 'text': 'Grandchild2' }] }, { 'text': 'Child2' }] }, { 'text': 'Parent2' }, { 'text': 'Parent3' }, { 'text': 'Parent4' }, { 'text': 'Parent5' }];
+;
+        /**/
+
+
+        $('#default-tree').treeview({
+            data: json,
+            // expanded to 2 levels
+            levels: 99,
+
+            // custom icons
+            expandIcon: 'glyphicon glyphicon-plus',
+            collapseIcon: 'glyphicon glyphicon-minus',
+            emptyIcon: 'glyphicon',
+            nodeIcon: '',
+            selectedIcon: '',
+            checkedIcon: 'glyphicon glyphicon-check',
+            uncheckedIcon: 'glyphicon glyphicon-unchecked',
+
+            // colors
+            color: undefined, // '#000000',
+            backColor: undefined, // '#FFFFFF',
+            borderColor: undefined, // '#dddddd',
+            onhoverColor: '#F5F5F5',
+            selectedColor: '#FFFFFF',
+            selectedBackColor: '#428bca',
+            searchResultColor: '#D9534F',
+            searchResultBackColor: undefined, //'#FFFFFF',
+
+            // enables links
+            enableLinks: false,
+
+            // highlights selected items
+            highlightSelected: true,
+
+            // highlights search results
+            highlightSearchResults: true,
+
+            // shows borders
+            showBorder: true,
+
+            // shows icons
+            showIcon: true,
+
+            // shows checkboxes
+            showCheckbox: false,
+
+            // shows tags
+            showTags: false,
+
+            // enables multi select
+            multiSelect: false
+
+
+        });
+        $('#default-tree').on('nodeSelected', function (event, data) {
+            // Selected
+            $('#selectable-output').prepend('<p>' + data.text + ' was selected</p>');
+        });
+
+    });
+    </script>
+
+</body>
+</html >

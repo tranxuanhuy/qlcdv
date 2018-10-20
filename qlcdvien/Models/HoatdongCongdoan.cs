@@ -28,6 +28,6 @@ namespace qlcdvien.Models
 
         public bool? daDuyet { get; set; }
 
-        public virtual AspNetUser AspNetUser { get; set; }
+        public virtual ApplicationUser ApplicationUser { get; set; }
     }
 }

@@ -30,7 +30,7 @@ namespace qlcdvien.Models
 
         public bool? doituongKhenthuong { get; set; }
 
-        public virtual AspNetUser AspNetUser { get; set; }
+        public virtual ApplicationUser ApplicationUser { get; set; }
 
         public virtual CapCongDoan CapCongDoan { get; set; }
     }

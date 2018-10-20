@@ -12,7 +12,7 @@ namespace qlcdvien.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public CapCongDoan()
         {
-            AspNetUsers = new HashSet<AspNetUser>();
+            ApplicationUsers = new HashSet<ApplicationUser>();
             Khenthuongs = new HashSet<Khenthuong>();
         }
 
@@ -26,7 +26,7 @@ namespace qlcdvien.Models
         public int? parent { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<AspNetUser> AspNetUsers { get; set; }
+        public virtual ICollection<ApplicationUser> ApplicationUsers { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Khenthuong> Khenthuongs { get; set; }

@@ -1,8 +1,12 @@
 namespace qlcdvien.Migrations
 {
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.EntityFramework;
+    using qlcdvien.Models;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
+    using System.IO;
     using System.Linq;
 
     internal sealed class Configuration : DbMigrationsConfiguration<qlcdvien.Models.ApplicationDbContext>
@@ -26,6 +30,21 @@ namespace qlcdvien.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
+            var userStore = new UserStore<ApplicationUser>(context);
+            var userManager = new UserManager<ApplicationUser>(userStore);
+
+
+            foreach (string line in File.ReadLines("C:\\userlist.txt"))
+            {
+                var user = new ApplicationUser
+                {
+                    UserName = line,
+                    capcongdoan_id = 1,
+                };
+
+                userManager.Create(user, "12QWaszx!@");
+            }
+           
         }
     }
 }

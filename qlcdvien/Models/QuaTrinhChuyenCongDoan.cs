@@ -23,6 +23,6 @@ namespace qlcdvien.Models
         [Column(TypeName = "date")]
         public DateTime? ThoiGian { get; set; }
 
-        public virtual AspNetUser AspNetUser { get; set; }
+        public virtual ApplicationUser ApplicationUser { get; set; }
     }
 }

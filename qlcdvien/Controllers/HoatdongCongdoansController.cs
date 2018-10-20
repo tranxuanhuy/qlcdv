@@ -13,13 +13,13 @@ namespace qlcdvien.Controllers
 {
     public class HoatdongCongdoansController : Controller
     {
-        private Model1 db = new Model1();
+        private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: HoatdongCongdoans
         public ActionResult Index(string firstdate,string enddate)
         {
             
-            var hoatdongCongdoans = db.HoatdongCongdoans.Include(h => h.AspNetUser);            
+            var hoatdongCongdoans = db.HoatdongCongdoans.Include(h => h.ApplicationUser);            
             if (!String.IsNullOrEmpty(firstdate)&& !String.IsNullOrEmpty(enddate)) // kiểm tra chuỗi tìm kiếm có rỗng/null hay không
             {
                 DateTime d1 = DateTime.ParseExact(firstdate, "dd/MM/yyyy", null);
@@ -50,7 +50,7 @@ namespace qlcdvien.Controllers
         // GET: HoatdongCongdoans/Create
         public ActionResult Create()
         {
-            ViewBag.nguoidang_id = new SelectList(db.AspNetUsers, "Id", "Email");
+            ViewBag.nguoidang_id = new SelectList(db.Users.ToList(), "Id", "Email");
             return View();
         }
 
@@ -68,7 +68,7 @@ namespace qlcdvien.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.nguoidang_id = new SelectList(db.AspNetUsers, "Id", "Email", hoatdongCongdoan.nguoidang_id);
+            ViewBag.nguoidang_id = new SelectList(db.Users.ToList(), "Id", "Email", hoatdongCongdoan.nguoidang_id);
             return View(hoatdongCongdoan);
         }
 
@@ -84,7 +84,7 @@ namespace qlcdvien.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.nguoidang_id = new SelectList(db.AspNetUsers, "Id", "Email", hoatdongCongdoan.nguoidang_id);
+            ViewBag.nguoidang_id = new SelectList(db.Users.ToList(), "Id", "Email", hoatdongCongdoan.nguoidang_id);
             return View(hoatdongCongdoan);
         }
 
@@ -101,7 +101,7 @@ namespace qlcdvien.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.nguoidang_id = new SelectList(db.AspNetUsers, "Id", "Email", hoatdongCongdoan.nguoidang_id);
+            ViewBag.nguoidang_id = new SelectList(db.Users.ToList(), "Id", "Email", hoatdongCongdoan.nguoidang_id);
             return View(hoatdongCongdoan);
         }
 
