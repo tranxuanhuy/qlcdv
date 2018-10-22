@@ -120,6 +120,7 @@ namespace qlcdvien.Models
         public virtual DbSet<Khenthuong> Khenthuongs { get; set; }
         public virtual DbSet<Log> Logs { get; set; }
         public virtual DbSet<QuaTrinhChuyenCongDoan> QuaTrinhChuyenCongDoans { get; set; }
+
         public ApplicationDbContext()
             : base("Model1", throwIfV1Schema: false)
         {
@@ -131,5 +132,9 @@ namespace qlcdvien.Models
         }
 
         
+
+        //public System.Data.Entity.DbSet<qlcdvien.Models.ApplicationUser> ApplicationUsers { get; set; }
+
+
     }
 }

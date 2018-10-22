@@ -39,7 +39,7 @@ namespace qlcdvien.Migrations
                 var user = new ApplicationUser
                 {
                     UserName = line,
-                    capcongdoan_id = 1,
+                    
                 };
 
                 userManager.Create(user, "12QWaszx!@");
