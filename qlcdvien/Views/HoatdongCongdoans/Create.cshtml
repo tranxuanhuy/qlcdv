@@ -47,13 +47,7 @@
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.nguoidang_id, "nguoidang_id", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("nguoidang_id", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.nguoidang_id, "", new { @class = "text-danger" })
-            </div>
-        </div>
+ 
 
         <div class="form-group">
             @Html.LabelFor(model => model.daDuyet, htmlAttributes: new { @class = "control-label col-md-2" })

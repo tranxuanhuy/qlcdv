@@ -85,6 +85,7 @@ namespace qlcdvien.Models
         [StringLength(300)]
         public string hanche { get; set; }
 
-        public int capcongdoan_id { get; set; }
+        
+        public virtual CapCongDoan CapCongDoan { get; set; }
     }
 }

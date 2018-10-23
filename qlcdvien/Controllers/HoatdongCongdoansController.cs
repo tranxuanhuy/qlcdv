@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 using qlcdvien.Models;
 
 namespace qlcdvien.Controllers
@@ -18,8 +19,8 @@ namespace qlcdvien.Controllers
         // GET: HoatdongCongdoans
         public ActionResult Index(string firstdate,string enddate)
         {
-            
-            var hoatdongCongdoans = db.HoatdongCongdoans.Include(h => h.ApplicationUser);            
+
+            var hoatdongCongdoans = db.HoatdongCongdoans.Include(i => i.ApplicationUser);
             if (!String.IsNullOrEmpty(firstdate)&& !String.IsNullOrEmpty(enddate)) // kiểm tra chuỗi tìm kiếm có rỗng/null hay không
             {
                 DateTime d1 = DateTime.ParseExact(firstdate, "dd/MM/yyyy", null);
@@ -39,7 +40,7 @@ namespace qlcdvien.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            HoatdongCongdoan hoatdongCongdoan = db.HoatdongCongdoans.Find(id);
+            HoatdongCongdoan hoatdongCongdoan = db.HoatdongCongdoans.Include(i => i.ApplicationUser).SingleOrDefault(x => x.Hoatdong_Id == id);
             if (hoatdongCongdoan == null)
             {
                 return HttpNotFound();
@@ -50,7 +51,7 @@ namespace qlcdvien.Controllers
         // GET: HoatdongCongdoans/Create
         public ActionResult Create()
         {
-            ViewBag.nguoidang_id = new SelectList(db.Users.ToList(), "Id", "Email");
+            
             return View();
         }
 
@@ -63,12 +64,13 @@ namespace qlcdvien.Controllers
         {
             if (ModelState.IsValid)
             {
+                hoatdongCongdoan.nguoidang_id = System.Web.HttpContext.Current.User.Identity.GetUserId();
                 db.HoatdongCongdoans.Add(hoatdongCongdoan);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.nguoidang_id = new SelectList(db.Users.ToList(), "Id", "Email", hoatdongCongdoan.nguoidang_id);
+            
             return View(hoatdongCongdoan);
         }
 
@@ -79,12 +81,12 @@ namespace qlcdvien.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            HoatdongCongdoan hoatdongCongdoan = db.HoatdongCongdoans.Find(id);
+            HoatdongCongdoan hoatdongCongdoan = db.HoatdongCongdoans.Include(i => i.ApplicationUser).SingleOrDefault(x => x.Hoatdong_Id == id);
             if (hoatdongCongdoan == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.nguoidang_id = new SelectList(db.Users.ToList(), "Id", "Email", hoatdongCongdoan.nguoidang_id);
+            ViewBag.nguoidang_id = new SelectList(db.Users.ToList(), "Id", "name", hoatdongCongdoan.ApplicationUser.Id);
             return View(hoatdongCongdoan);
         }
 
@@ -93,15 +95,16 @@ namespace qlcdvien.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Hoatdong_Id,NoiDung,Tieude,Anhhoatdong,ngaydang,nguoidang_id,daDuyet")] HoatdongCongdoan hoatdongCongdoan)
+        public ActionResult Edit([Bind(Include = "Hoatdong_Id,NoiDung,Tieude,Anhhoatdong,ngaydang,daDuyet")] HoatdongCongdoan hoatdongCongdoan,string nguoidang_id="")
         {
             if (ModelState.IsValid)
             {
+                hoatdongCongdoan.nguoidang_id = nguoidang_id;
                 db.Entry(hoatdongCongdoan).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.nguoidang_id = new SelectList(db.Users.ToList(), "Id", "Email", hoatdongCongdoan.nguoidang_id);
+            ViewBag.nguoidang_id = new SelectList(db.Users.ToList(), "Id", "name", db.HoatdongCongdoans.Find(hoatdongCongdoan.Hoatdong_Id).ApplicationUser.Id);
             return View(hoatdongCongdoan);
         }
 
@@ -112,7 +115,7 @@ namespace qlcdvien.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            HoatdongCongdoan hoatdongCongdoan = db.HoatdongCongdoans.Find(id);
+            HoatdongCongdoan hoatdongCongdoan = db.HoatdongCongdoans.Include(i => i.ApplicationUser).SingleOrDefault(x => x.Hoatdong_Id == id);
             if (hoatdongCongdoan == null)
             {
                 return HttpNotFound();

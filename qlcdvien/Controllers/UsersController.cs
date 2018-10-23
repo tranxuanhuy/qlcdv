@@ -51,7 +51,24 @@ namespace qlcdvien.Controllers
                 _userManager = value;
             }
         }
+        public ActionResult Index1()
+        {
+            List<User> users = new List<User>();
+            var config = new MapperConfiguration(cfg => {
 
+                cfg.CreateMap<ApplicationUser, User>();
+
+            });
+
+            IMapper iMapper = config.CreateMapper();
+            foreach (var item in UserManager.Users.Include(a => a.CapCongDoan).ToList())
+            {
+                users.Add(iMapper.Map<ApplicationUser, User>(item));
+            }
+            return View(users);
+
+           
+        }
         // GET: Users
         public ActionResult Index()
         {
@@ -166,6 +183,8 @@ namespace qlcdvien.Controllers
             {
                 return HttpNotFound();
             }
+            var categories = from c in new ApplicationDbContext().CapCongDoans select c;
+            ViewBag.CapCongDoanID = new SelectList(categories, "Capcongdoan_id", "name",user.CapCongDoan.Capcongdoan_id); // danh sách CapCongDoan
             return View(user);
         }
 
@@ -174,8 +193,9 @@ namespace qlcdvien.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,name,DOB,sex,noisinh,quequan,HKTT,tamtru,chucvuChinhquyen,chucvuDoanthe,vanhoa,chuyenmon,hocvi,hocham,tinhoc,ngoaingu,imageurl,tongiao,dantoc,cmnd,noicapcmnd,ngaycapcmnd,truongcongdoanbophan,truonglopdaotao,nangkhieu,hanche,capcongdoan_id")] User model)
+        public ActionResult Edit([Bind(Include = "Id,name,DOB,sex,noisinh,quequan,HKTT,tamtru,chucvuChinhquyen,chucvuDoanthe,vanhoa,chuyenmon,hocvi,hocham,tinhoc,ngoaingu,imageurl,tongiao,dantoc,cmnd,noicapcmnd,ngaycapcmnd,truongcongdoanbophan,truonglopdaotao,nangkhieu,hanche,capcongdoan_id")] User model, int CapCongDoanID = 0)
         {
+            
             if (ModelState.IsValid)
             {
 
@@ -208,7 +228,7 @@ namespace qlcdvien.Controllers
                 user.truonglopdaotao = model.truonglopdaotao;
                 user.nangkhieu = model.nangkhieu;
                 user.hanche = model.hanche;
-                user.capcongdoan_id = model.capcongdoan_id;
+                user.capcongdoan_id = CapCongDoanID;
 
 
 
@@ -217,6 +237,8 @@ namespace qlcdvien.Controllers
 
                 return RedirectToAction("Index");
             }
+            var categories = from c in new ApplicationDbContext().CapCongDoans select c;
+            ViewBag.CapCongDoanID = new SelectList(categories, "Capcongdoan_id", "name", UserManager.FindById(model.Id).CapCongDoan.Capcongdoan_id); // danh sách CapCongDoan
             return View(model);
         }
 

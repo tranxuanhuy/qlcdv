@@ -34,16 +34,16 @@ namespace qlcdvien.Migrations
             var userManager = new UserManager<ApplicationUser>(userStore);
 
 
-            foreach (string line in File.ReadLines("C:\\userlist.txt"))
-            {
-                var user = new ApplicationUser
-                {
-                    UserName = line,
+            //foreach (string line in File.ReadLines("C:\\userlist.txt"))
+            //{
+            //    var user = new ApplicationUser
+            //    {
+            //        UserName = line,
                     
-                };
+            //    };
 
-                userManager.Create(user, "12QWaszx!@");
-            }
+            //    userManager.Create(user, "12QWaszx!@");
+            //}
            
         }
     }

@@ -211,6 +211,10 @@
     <Compile Include="Migrations\201810200956202_test7.Designer.cs">
       <DependentUpon>201810200956202_test7.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201810230016531_test1.cs" />
+    <Compile Include="Migrations\201810230016531_test1.Designer.cs">
+      <DependentUpon>201810230016531_test1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CapCongDoan.cs" />
@@ -515,6 +519,7 @@
     <Content Include="Views\Users\Details.cshtml" />
     <Content Include="Views\Users\Edit.cshtml" />
     <Content Include="Views\Users\Index.cshtml" />
+    <Content Include="Views\Users\Index1.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -535,6 +540,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201810200956202_test7.resx">
       <DependentUpon>201810200956202_test7.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810230016531_test1.resx">
+      <DependentUpon>201810230016531_test1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

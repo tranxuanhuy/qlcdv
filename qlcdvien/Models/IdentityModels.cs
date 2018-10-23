@@ -131,7 +131,56 @@ namespace qlcdvien.Models
             return new ApplicationDbContext();
         }
 
-        
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            //modelBuilder.Entity<ApplicationUser>()
+            //    .HasMany(e => e.ApplicationUserClaims)
+            //    .WithRequired(e => e.ApplicationUser)
+            //    .HasForeignKey(e => e.UserId)
+            //    .WillCascadeOnDelete(false);
+
+            //modelBuilder.Entity<ApplicationUser>()
+            //    .HasMany(e => e.ApplicationUserLogins)
+            //    .WithRequired(e => e.ApplicationUser)
+            //    .HasForeignKey(e => e.UserId)
+            //    .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<ApplicationUser>()
+                .HasMany(e => e.HoatdongCongdoans)
+                .WithOptional(e => e.ApplicationUser)
+                .HasForeignKey(e => e.nguoidang_id);
+
+            modelBuilder.Entity<ApplicationUser>()
+                .HasMany(e => e.Khenthuongs)
+                .WithOptional(e => e.ApplicationUser)
+                .HasForeignKey(e => e.cdv_id);
+
+            modelBuilder.Entity<ApplicationUser>()
+                .HasMany(e => e.Logs)
+                .WithOptional(e => e.ApplicationUser)
+                .HasForeignKey(e => e.CreatedBy);
+
+            modelBuilder.Entity<ApplicationUser>()
+                .HasMany(e => e.QuaTrinhChuyenCongDoans)
+                .WithOptional(e => e.ApplicationUser)
+                .HasForeignKey(e => e.cdv_ID);
+
+            //modelBuilder.Entity<ApplicationUser>()
+            //    .HasMany(e => e.AspNetRoles)
+            //    .WithMany(e =>e.ApplicationUsers)
+            //    .Map(m => m.ToTable("ApplicationUserRoles").MapLeftKey("UserId").MapRightKey("RoleId"));
+
+            modelBuilder.Entity<CapCongDoan>()
+                .HasMany(e =>e.ApplicationUsers)
+                .WithRequired(e => e.CapCongDoan)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<CapCongDoan>()
+                .HasMany(e => e.Khenthuongs)
+                .WithOptional(e => e.CapCongDoan)
+                .HasForeignKey(e => e.tochuc_id);
+        }
 
         //public System.Data.Entity.DbSet<qlcdvien.Models.ApplicationUser> ApplicationUsers { get; set; }
 

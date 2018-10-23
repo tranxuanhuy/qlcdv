@@ -19,9 +19,7 @@
 <!-- Kết thúc -->
 <table class="table">
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.ApplicationUser.Email)
-        </th>
+      
         <th>
             @Html.DisplayNameFor(model => model.NoiDung)
         </th>
@@ -37,15 +35,16 @@
         <th>
             @Html.DisplayNameFor(model => model.daDuyet)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ApplicationUser.name)
+        </th>
         <th></th>
     </tr>
 
     @foreach (var item in Model)
     {
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.ApplicationUser.Email)
-            </td>
+           
             <td>
                 @Html.DisplayFor(modelItem => item.NoiDung)
             </td>
@@ -60,6 +59,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.daDuyet)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApplicationUser.name)
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.Hoatdong_Id }) |
