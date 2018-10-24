@@ -7,13 +7,13 @@ namespace qlcdvien.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class test : IMigrationMetadata
+    public sealed partial class Anhhoatdong_delete : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(test));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Anhhoatdong_delete));
         
         string IMigrationMetadata.Id
         {
-            get { return "201810240203421_test"; }
+            get { return "201810241231549_Anhhoatdong_delete"; }
         }
         
         string IMigrationMetadata.Source

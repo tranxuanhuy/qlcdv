@@ -207,14 +207,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201810200956202_test7.cs" />
-    <Compile Include="Migrations\201810200956202_test7.Designer.cs">
-      <DependentUpon>201810200956202_test7.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201810240203421_test.cs" />
-    <Compile Include="Migrations\201810240203421_test.Designer.cs">
-      <DependentUpon>201810240203421_test.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\201810240759207_ngaycapcmndDATETYPE.cs" />
     <Compile Include="Migrations\201810240759207_ngaycapcmndDATETYPE.Designer.cs">
       <DependentUpon>201810240759207_ngaycapcmndDATETYPE.cs</DependentUpon>
@@ -222,6 +214,10 @@
     <Compile Include="Migrations\201810241022307_ngaydang-HoatdongCongdoan-datetime.cs" />
     <Compile Include="Migrations\201810241022307_ngaydang-HoatdongCongdoan-datetime.Designer.cs">
       <DependentUpon>201810241022307_ngaydang-HoatdongCongdoan-datetime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810241231549_Anhhoatdong_delete.cs" />
+    <Compile Include="Migrations\201810241231549_Anhhoatdong_delete.Designer.cs">
+      <DependentUpon>201810241231549_Anhhoatdong_delete.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -547,17 +543,14 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201810200956202_test7.resx">
-      <DependentUpon>201810200956202_test7.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201810240203421_test.resx">
-      <DependentUpon>201810240203421_test.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201810240759207_ngaycapcmndDATETYPE.resx">
       <DependentUpon>201810240759207_ngaycapcmndDATETYPE.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201810241022307_ngaydang-HoatdongCongdoan-datetime.resx">
       <DependentUpon>201810241022307_ngaydang-HoatdongCongdoan-datetime.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810241231549_Anhhoatdong_delete.resx">
+      <DependentUpon>201810241231549_Anhhoatdong_delete.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

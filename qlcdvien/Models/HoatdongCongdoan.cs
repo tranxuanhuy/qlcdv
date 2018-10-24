@@ -20,7 +20,7 @@ namespace qlcdvien.Models
         [Column(TypeName = "ntext")]
         public string Tieude { get; set; }
 
-        public byte[] Anhhoatdong { get; set; }
+        
 
         [Column(TypeName = "datetime")]
         public DateTime? ngaydang { get; set; }
