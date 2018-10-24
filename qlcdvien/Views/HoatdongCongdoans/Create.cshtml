@@ -109,12 +109,12 @@
     <script src="~/Content/ace-master/assets/js/ace-elements.min.js"></script>
     <script src="~/Content/ace-master/assets/js/ace.min.js"></script>
     
-        <script language=javascript >
+    <script language=javascript>
 
             $(function () {
                 $('#editor1').wysiwyg();
                 $('#btnSave').bind('click', function () {
-                    $("#NoiDung").val($("#editor1").html().replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'));
+                    $("#NoiDung").val($("#editor1").html().replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/'/g,""));
                 });
             });
     </script>
