@@ -78,8 +78,9 @@ namespace qlcdvien.Models
         [StringLength(300)]
         public string noicapcmnd { get; set; }
 
-        [StringLength(300)]
-        public string ngaycapcmnd { get; set; }
+        [Column(TypeName = "date")]
+        public DateTime? ngaycapcmnd { get; set; }
+        
 
         public bool? truongcongdoanbophan { get; set; }
 
@@ -118,6 +119,7 @@ namespace qlcdvien.Models
         public virtual DbSet<CapCongDoan> CapCongDoans { get; set; }
         public virtual DbSet<HoatdongCongdoan> HoatdongCongdoans { get; set; }
         public virtual DbSet<Khenthuong> Khenthuongs { get; set; }
+        
         public virtual DbSet<Log> Logs { get; set; }
         public virtual DbSet<QuaTrinhChuyenCongDoan> QuaTrinhChuyenCongDoans { get; set; }
 
@@ -180,6 +182,8 @@ namespace qlcdvien.Models
                 .HasMany(e => e.Khenthuongs)
                 .WithOptional(e => e.CapCongDoan)
                 .HasForeignKey(e => e.tochuc_id);
+
+            
         }
 
         //public System.Data.Entity.DbSet<qlcdvien.Models.ApplicationUser> ApplicationUsers { get; set; }

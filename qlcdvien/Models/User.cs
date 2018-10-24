@@ -71,8 +71,10 @@ namespace qlcdvien.Models
         [StringLength(300)]
         public string noicapcmnd { get; set; }
 
-        [StringLength(300)]
-        public string ngaycapcmnd { get; set; }
+        [Column(TypeName = "date")]
+        public DateTime? ngaycapcmnd { get; set; }
+
+
 
         public bool? truongcongdoanbophan { get; set; }
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -193,15 +194,33 @@ namespace qlcdvien.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,name,DOB,sex,noisinh,quequan,HKTT,tamtru,chucvuChinhquyen,chucvuDoanthe,vanhoa,chuyenmon,hocvi,hocham,tinhoc,ngoaingu,imageurl,tongiao,dantoc,cmnd,noicapcmnd,ngaycapcmnd,truongcongdoanbophan,truonglopdaotao,nangkhieu,hanche,capcongdoan_id")] User model, int CapCongDoanID = 0)
+        public ActionResult Edit([Bind(Include = "Id,name,DOB,sex,noisinh,quequan,HKTT,tamtru,chucvuChinhquyen,chucvuDoanthe,vanhoa,chuyenmon,hocvi,hocham,tinhoc,ngoaingu,imageurl,tongiao,dantoc,cmnd,noicapcmnd,ngaycapcmnd,truongcongdoanbophan,truonglopdaotao,nangkhieu,hanche,capcongdoan_id")] User model, HttpPostedFileBase uploadImage, int CapCongDoanID = 0 )
         {
             
             if (ModelState.IsValid)
             {
-
+              
 
                 //db.Entry(user).State = EntityState.Modified;
-                         ApplicationUser user = UserManager.FindById(model.Id);
+                ApplicationUser user = UserManager.FindById(model.Id);
+
+                if (uploadImage!=null)
+                {
+                    //xoa anh cu
+                    var filePath = Server.MapPath(user.imageurl);
+                    if (System.IO.File.Exists(filePath))
+                    {
+                        System.IO.File.Delete(filePath);
+                    }
+                    user.imageurl = model.imageurl;
+                    //nap anh moi
+                    //string filename = Path.GetFileNameWithoutExtension(uploadImage.FileName);
+                    string extension = Path.GetExtension(uploadImage.FileName);
+                    string filename = user.UserName + DateTime.Now.ToString("yymmssfff") + extension;
+                    user.imageurl = "/Image/Profile/" + filename;
+                    filename = Path.Combine(Server.MapPath("~/Image/Profile/"), filename);
+                    uploadImage.SaveAs(filename); 
+                }
 
                 user.name = model.name;
                 user.DOB = model.DOB;
@@ -218,7 +237,7 @@ namespace qlcdvien.Controllers
                 user.hocham = model.hocham;
                 user.tinhoc = model.tinhoc;
                 user.ngoaingu = model.ngoaingu;
-                user.imageurl = model.imageurl;
+                
                 user.tongiao = model.tongiao;
                 user.dantoc = model.dantoc;
                 user.cmnd = model.cmnd;
@@ -230,6 +249,9 @@ namespace qlcdvien.Controllers
                 user.hanche = model.hanche;
                 user.capcongdoan_id = CapCongDoanID;
 
+             
+
+             
 
 
                 UserManager.Update(user);
@@ -275,6 +297,13 @@ namespace qlcdvien.Controllers
         public ActionResult DeleteConfirmed(string id)
         {
             ApplicationUser user = UserManager.FindById(id);
+
+            //xoa anh cu
+            var filePath = Server.MapPath(user.imageurl);
+            if (System.IO.File.Exists(filePath))
+            {
+                System.IO.File.Delete(filePath);
+            }
 
             UserManager.Delete(user);
             

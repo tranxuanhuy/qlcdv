@@ -64,7 +64,11 @@ namespace qlcdvien.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (hoatdongCongdoan.NoiDung != null)
+                    hoatdongCongdoan.NoiDung = WebUtility.HtmlDecode(hoatdongCongdoan.NoiDung);
+
                 hoatdongCongdoan.nguoidang_id = System.Web.HttpContext.Current.User.Identity.GetUserId();
+                hoatdongCongdoan.ngaydang = DateTime.Now;
                 db.HoatdongCongdoans.Add(hoatdongCongdoan);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -99,6 +103,9 @@ namespace qlcdvien.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (hoatdongCongdoan.NoiDung != null)
+                    hoatdongCongdoan.NoiDung = WebUtility.HtmlDecode(hoatdongCongdoan.NoiDung);
+
                 hoatdongCongdoan.nguoidang_id = nguoidang_id;
                 db.Entry(hoatdongCongdoan).State = EntityState.Modified;
                 db.SaveChanges();

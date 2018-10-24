@@ -46,7 +46,8 @@
         <tr>
            
             <td>
-                @Html.DisplayFor(modelItem => item.NoiDung)
+                @*@Html.DisplayFor(modelItem => item.NoiDung)*@
+                @Html.Raw(item.NoiDung)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Tieude)

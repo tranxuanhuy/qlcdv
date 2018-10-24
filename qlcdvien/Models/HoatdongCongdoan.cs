@@ -9,6 +9,8 @@ namespace qlcdvien.Models
     [Table("HoatdongCongdoan")]
     public partial class HoatdongCongdoan
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+
         [Key]
         public int Hoatdong_Id { get; set; }
 
@@ -20,7 +22,7 @@ namespace qlcdvien.Models
 
         public byte[] Anhhoatdong { get; set; }
 
-        [Column(TypeName = "date")]
+        [Column(TypeName = "datetime")]
         public DateTime? ngaydang { get; set; }
 
         [StringLength(128)]
@@ -29,5 +31,8 @@ namespace qlcdvien.Models
         public bool? daDuyet { get; set; }
 
         public virtual ApplicationUser ApplicationUser { get; set; }
+
+        
+        
     }
 }
