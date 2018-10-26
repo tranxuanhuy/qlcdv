@@ -122,7 +122,7 @@
                 $('#editor1').wysiwyg();
                 $("#editor1").html('@Html.Raw(Model.NoiDung)')
                 $('#btnSave').bind('click', function () {
-                    $("#NoiDung").val($("#editor1").html().replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'));
+                    $("#NoiDung").val($("#editor1").html().replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/'/g, ""));
                 });
             });
     </script>

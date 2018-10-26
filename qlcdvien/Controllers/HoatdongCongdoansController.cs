@@ -17,20 +17,20 @@ namespace qlcdvien.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: HoatdongCongdoans
-        public ActionResult Index(string firstdate,string enddate)
+        public ActionResult Index(string daterangepicker)
         {
-
+            daterangepicker = Request["date-range-picker"];
             var hoatdongCongdoans = db.HoatdongCongdoans.Include(i => i.ApplicationUser);
-            if (!String.IsNullOrEmpty(firstdate)&& !String.IsNullOrEmpty(enddate)) // kiểm tra chuỗi tìm kiếm có rỗng/null hay không
+            if (!String.IsNullOrEmpty(daterangepicker)) // kiểm tra chuỗi tìm kiếm có rỗng/null hay không
             {
-                DateTime d1 = DateTime.ParseExact(firstdate, "dd/MM/yyyy", null);
-                DateTime d2 = DateTime.ParseExact(enddate, "dd/MM/yyyy", null);
+                DateTime d1 = DateTime.ParseExact(daterangepicker.Split(' ').First(), "MM/dd/yyyy", null);
+                DateTime d2 = DateTime.ParseExact(daterangepicker.Split(' ').Last(), "MM/dd/yyyy", null);
                 hoatdongCongdoans = hoatdongCongdoans
        .Where(n => n.ngaydang >= d1)
        .Where(n => n.ngaydang <=d2);
             
         }
-            return View(hoatdongCongdoans.ToList());
+            return View(hoatdongCongdoans.OrderByDescending(x=>x.ngaydang).ToList());
         }
 
         // GET: HoatdongCongdoans/Details/5
