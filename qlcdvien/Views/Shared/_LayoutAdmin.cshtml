@@ -3,37 +3,38 @@
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta charset="utf-8" />
-    <title>Tables - Ace Admin</title>
+    <title>Blank Page - Ace Admin</title>
 
-    <meta name="description" content="Static &amp; Dynamic Tables" />
+    <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
 
     <!-- bootstrap & fontawesome -->
-    <link rel="stylesheet" href="~/Content/TemplateAdmin/assets/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/Content/TemplateAdmin/assets/font-awesome/4.2.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="~/Content/ace-master/assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/Content/ace-master/assets/font-awesome/4.2.0/css/font-awesome.min.css" />
 
     <!-- page specific plugin styles -->
     <!-- text fonts -->
-    <link rel="stylesheet" href="~/Content/TemplateAdmin/assets/fonts/fonts.googleapis.com.css" />
+    <link rel="stylesheet" href="~/Content/ace-master/assets/fonts/fonts.googleapis.com.css" />
 
     <!-- ace styles -->
-    <link rel="stylesheet" href="~/Content/TemplateAdmin/assets/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
+    <link rel="stylesheet" href="~/Content/ace-master/assets/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
 
     <!--[if lte IE 9]>
-        <link rel="stylesheet" href="~/Content/TemplateAdmin/assets/css/ace-part2.min.css" class="ace-main-stylesheet" />
+        <link rel="stylesheet" href="~/Content/ace-master/assets/css/ace-part2.min.css" class="ace-main-stylesheet" />
     <![endif]-->
     <!--[if lte IE 9]>
-      <link rel="stylesheet" href="~/Content/TemplateAdmin/assets/css/ace-ie.min.css" />
+      <link rel="stylesheet" href="~/Content/ace-master/assets/css/ace-ie.min.css" />
     <![endif]-->
     <!-- inline styles related to this page -->
     <!-- ace settings handler -->
-    <script src="~/Content/TemplateAdmin/assets/js/ace-extra.min.js"></script>
+    <script src="~/Content/ace-master/assets/js/ace-extra.min.js"></script>
 
     <!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
     <!--[if lte IE 8]>
-    <script src="~/Content/TemplateAdmin/assets/js/html5shiv.min.js"></script>
-    <script src="~/Content/TemplateAdmin/assets/js/respond.min.js"></script>
+    <script src="~/Content/ace-master/assets/js/html5shiv.min.js"></script>
+    <script src="~/Content/ace-master/assets/js/respond.min.js"></script>
     <![endif]-->
+    @RenderSection("scriptsHeader", required: false)
 </head>
 
 <body class="no-skin">
@@ -225,7 +226,7 @@
                                 <ul class="dropdown-menu dropdown-navbar">
                                     <li>
                                         <a href="#" class="clearfix">
-                                            <img src="~/Content/TemplateAdmin/assets/avatars/avatar.png" class="msg-photo" alt="Alex's Avatar" />
+                                            <img src="~/Content/ace-master/assets/avatars/avatar.png" class="msg-photo" alt="Alex's Avatar" />
                                             <span class="msg-body">
                                                 <span class="msg-title">
                                                     <span class="blue">Alex:</span>
@@ -242,7 +243,7 @@
 
                                     <li>
                                         <a href="#" class="clearfix">
-                                            <img src="~/Content/TemplateAdmin/assets/avatars/avatar3.png" class="msg-photo" alt="Susan's Avatar" />
+                                            <img src="~/Content/ace-master/assets/avatars/avatar3.png" class="msg-photo" alt="Susan's Avatar" />
                                             <span class="msg-body">
                                                 <span class="msg-title">
                                                     <span class="blue">Susan:</span>
@@ -259,7 +260,7 @@
 
                                     <li>
                                         <a href="#" class="clearfix">
-                                            <img src="~/Content/TemplateAdmin/assets/avatars/avatar4.png" class="msg-photo" alt="Bob's Avatar" />
+                                            <img src="~/Content/ace-master/assets/avatars/avatar4.png" class="msg-photo" alt="Bob's Avatar" />
                                             <span class="msg-body">
                                                 <span class="msg-title">
                                                     <span class="blue">Bob:</span>
@@ -276,7 +277,7 @@
 
                                     <li>
                                         <a href="#" class="clearfix">
-                                            <img src="~/Content/TemplateAdmin/assets/avatars/avatar2.png" class="msg-photo" alt="Kate's Avatar" />
+                                            <img src="~/Content/ace-master/assets/avatars/avatar2.png" class="msg-photo" alt="Kate's Avatar" />
                                             <span class="msg-body">
                                                 <span class="msg-title">
                                                     <span class="blue">Kate:</span>
@@ -293,7 +294,7 @@
 
                                     <li>
                                         <a href="#" class="clearfix">
-                                            <img src="~/Content/TemplateAdmin/assets/avatars/avatar5.png" class="msg-photo" alt="Fred's Avatar" />
+                                            <img src="~/Content/ace-master/assets/avatars/avatar5.png" class="msg-photo" alt="Fred's Avatar" />
                                             <span class="msg-body">
                                                 <span class="msg-title">
                                                     <span class="blue">Fred:</span>
@@ -321,7 +322,7 @@
 
                     <li class="light-blue">
                         <a data-toggle="dropdown" href="#" class="dropdown-toggle">
-                            <img class="nav-user-photo" src="~/Content/TemplateAdmin/assets/avatars/user.jpg" alt="Jason's Photo" />
+                            <img class="nav-user-photo" src="~/Content/ace-master/assets/avatars/user.jpg" alt="Jason's Photo" />
                             <span class="user-info">
                                 <small>Welcome,</small>
                                 Jason
@@ -608,7 +609,7 @@
                     </ul>
                 </li>
 
-                <li class="active open">
+                <li class="">
                     <a href="#" class="dropdown-toggle">
                         <i class="menu-icon fa fa-list"></i>
                         <span class="menu-text"> Tables </span>
@@ -619,7 +620,7 @@
                     <b class="arrow"></b>
 
                     <ul class="submenu">
-                        <li class="active">
+                        <li class="">
                             <a href="tables.html">
                                 <i class="menu-icon fa fa-caret-right"></i>
                                 Simple &amp; Dynamic
@@ -807,7 +808,7 @@
                     </ul>
                 </li>
 
-                <li class="">
+                <li class="active open">
                     <a href="#" class="dropdown-toggle">
                         <i class="menu-icon fa fa-file-o"></i>
 
@@ -859,7 +860,7 @@
                             <b class="arrow"></b>
                         </li>
 
-                        <li class="">
+                        <li class="active">
                             <a href="blank.html">
                                 <i class="menu-icon fa fa-caret-right"></i>
                                 Blank Page
@@ -894,9 +895,9 @@
                         </li>
 
                         <li>
-                            <a href="#">Tables</a>
+                            <a href="#">Other Pages</a>
                         </li>
-                        <li class="active">Simple &amp; Dynamic</li>
+                        <li class="active">Blank Page</li>
                     </ul><!-- /.breadcrumb -->
 
                     <div class="nav-search" id="nav-search">
@@ -977,541 +978,11 @@
                         </div><!-- /.ace-settings-box -->
                     </div><!-- /.ace-settings-container -->
 
-                    <div class="page-header">
-                        <h1>
-                            Tables
-                            <small>
-                                <i class="ace-icon fa fa-angle-double-right"></i>
-                                Static &amp; Dynamic Tables
-                            </small>
-                        </h1>
-                    </div><!-- /.page-header -->
-
                     <div class="row">
                         <div class="col-xs-12">
                             <!-- PAGE CONTENT BEGINS -->
                         @RenderBody()
-                            <div class="row">
-                                <div class="col-xs-12">
-                                    <table id="simple-table" class="table table-striped table-bordered table-hover">
-                                        <thead>
-                                            <tr>
-                                                <th class="center">
-                                                    <label class="pos-rel">
-                                                        <input type="checkbox" class="ace" />
-                                                        <span class="lbl"></span>
-                                                    </label>
-                                                </th>
-                                                <th>Domain</th>
-                                                <th>Price</th>
-                                                <th class="hidden-480">Clicks</th>
-
-                                                <th>
-                                                    <i class="ace-icon fa fa-clock-o bigger-110 hidden-480"></i>
-                                                    Update
-                                                </th>
-                                                <th class="hidden-480">Status</th>
-
-                                                <th></th>
-                                            </tr>
-                                        </thead>
-
-                                        <tbody>
-                                            <tr>
-                                                <td class="center">
-                                                    <label class="pos-rel">
-                                                        <input type="checkbox" class="ace" />
-                                                        <span class="lbl"></span>
-                                                    </label>
-                                                </td>
-
-                                                <td>
-                                                    <a href="#">ace.com</a>
-                                                </td>
-                                                <td>$45</td>
-                                                <td class="hidden-480">3,330</td>
-                                                <td>Feb 12</td>
-
-                                                <td class="hidden-480">
-                                                    <span class="label label-sm label-warning">Expiring</span>
-                                                </td>
-
-                                                <td>
-                                                    <div class="hidden-sm hidden-xs btn-group">
-                                                        <button class="btn btn-xs btn-success">
-                                                            <i class="ace-icon fa fa-check bigger-120"></i>
-                                                        </button>
-
-                                                        <button class="btn btn-xs btn-info">
-                                                            <i class="ace-icon fa fa-pencil bigger-120"></i>
-                                                        </button>
-
-                                                        <button class="btn btn-xs btn-danger">
-                                                            <i class="ace-icon fa fa-trash-o bigger-120"></i>
-                                                        </button>
-
-                                                        <button class="btn btn-xs btn-warning">
-                                                            <i class="ace-icon fa fa-flag bigger-120"></i>
-                                                        </button>
-                                                    </div>
-
-                                                    <div class="hidden-md hidden-lg">
-                                                        <div class="inline pos-rel">
-                                                            <button class="btn btn-minier btn-primary dropdown-toggle" data-toggle="dropdown" data-position="auto">
-                                                                <i class="ace-icon fa fa-cog icon-only bigger-110"></i>
-                                                            </button>
-
-                                                            <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
-                                                                <li>
-                                                                    <a href="#" class="tooltip-info" data-rel="tooltip" title="View">
-                                                                        <span class="blue">
-                                                                            <i class="ace-icon fa fa-search-plus bigger-120"></i>
-                                                                        </span>
-                                                                    </a>
-                                                                </li>
-
-                                                                <li>
-                                                                    <a href="#" class="tooltip-success" data-rel="tooltip" title="Edit">
-                                                                        <span class="green">
-                                                                            <i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
-                                                                        </span>
-                                                                    </a>
-                                                                </li>
-
-                                                                <li>
-                                                                    <a href="#" class="tooltip-error" data-rel="tooltip" title="Delete">
-                                                                        <span class="red">
-                                                                            <i class="ace-icon fa fa-trash-o bigger-120"></i>
-                                                                        </span>
-                                                                    </a>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-
-                                            <tr>
-                                                <td class="center">
-                                                    <label class="pos-rel">
-                                                        <input type="checkbox" class="ace" />
-                                                        <span class="lbl"></span>
-                                                    </label>
-                                                </td>
-
-                                                <td>
-                                                    <a href="#">base.com</a>
-                                                </td>
-                                                <td>$35</td>
-                                                <td class="hidden-480">2,595</td>
-                                                <td>Feb 18</td>
-
-                                                <td class="hidden-480">
-                                                    <span class="label label-sm label-success">Registered</span>
-                                                </td>
-
-                                                <td>
-                                                    <div class="hidden-sm hidden-xs btn-group">
-                                                        <button class="btn btn-xs btn-success">
-                                                            <i class="ace-icon fa fa-check bigger-120"></i>
-                                                        </button>
-
-                                                        <button class="btn btn-xs btn-info">
-                                                            <i class="ace-icon fa fa-pencil bigger-120"></i>
-                                                        </button>
-
-                                                        <button class="btn btn-xs btn-danger">
-                                                            <i class="ace-icon fa fa-trash-o bigger-120"></i>
-                                                        </button>
-
-                                                        <button class="btn btn-xs btn-warning">
-                                                            <i class="ace-icon fa fa-flag bigger-120"></i>
-                                                        </button>
-                                                    </div>
-
-                                                    <div class="hidden-md hidden-lg">
-                                                        <div class="inline pos-rel">
-                                                            <button class="btn btn-minier btn-primary dropdown-toggle" data-toggle="dropdown" data-position="auto">
-                                                                <i class="ace-icon fa fa-cog icon-only bigger-110"></i>
-                                                            </button>
-
-                                                            <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
-                                                                <li>
-                                                                    <a href="#" class="tooltip-info" data-rel="tooltip" title="View">
-                                                                        <span class="blue">
-                                                                            <i class="ace-icon fa fa-search-plus bigger-120"></i>
-                                                                        </span>
-                                                                    </a>
-                                                                </li>
-
-                                                                <li>
-                                                                    <a href="#" class="tooltip-success" data-rel="tooltip" title="Edit">
-                                                                        <span class="green">
-                                                                            <i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
-                                                                        </span>
-                                                                    </a>
-                                                                </li>
-
-                                                                <li>
-                                                                    <a href="#" class="tooltip-error" data-rel="tooltip" title="Delete">
-                                                                        <span class="red">
-                                                                            <i class="ace-icon fa fa-trash-o bigger-120"></i>
-                                                                        </span>
-                                                                    </a>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-
-                                            <tr>
-                                                <td class="center">
-                                                    <label class="pos-rel">
-                                                        <input type="checkbox" class="ace" />
-                                                        <span class="lbl"></span>
-                                                    </label>
-                                                </td>
-
-                                                <td>
-                                                    <a href="#">max.com</a>
-                                                </td>
-                                                <td>$60</td>
-                                                <td class="hidden-480">4,400</td>
-                                                <td>Mar 11</td>
-
-                                                <td class="hidden-480">
-                                                    <span class="label label-sm label-warning">Expiring</span>
-                                                </td>
-
-                                                <td>
-                                                    <div class="hidden-sm hidden-xs btn-group">
-                                                        <button class="btn btn-xs btn-success">
-                                                            <i class="ace-icon fa fa-check bigger-120"></i>
-                                                        </button>
-
-                                                        <button class="btn btn-xs btn-info">
-                                                            <i class="ace-icon fa fa-pencil bigger-120"></i>
-                                                        </button>
-
-                                                        <button class="btn btn-xs btn-danger">
-                                                            <i class="ace-icon fa fa-trash-o bigger-120"></i>
-                                                        </button>
-
-                                                        <button class="btn btn-xs btn-warning">
-                                                            <i class="ace-icon fa fa-flag bigger-120"></i>
-                                                        </button>
-                                                    </div>
-
-                                                    <div class="hidden-md hidden-lg">
-                                                        <div class="inline pos-rel">
-                                                            <button class="btn btn-minier btn-primary dropdown-toggle" data-toggle="dropdown" data-position="auto">
-                                                                <i class="ace-icon fa fa-cog icon-only bigger-110"></i>
-                                                            </button>
-
-                                                            <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
-                                                                <li>
-                                                                    <a href="#" class="tooltip-info" data-rel="tooltip" title="View">
-                                                                        <span class="blue">
-                                                                            <i class="ace-icon fa fa-search-plus bigger-120"></i>
-                                                                        </span>
-                                                                    </a>
-                                                                </li>
-
-                                                                <li>
-                                                                    <a href="#" class="tooltip-success" data-rel="tooltip" title="Edit">
-                                                                        <span class="green">
-                                                                            <i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
-                                                                        </span>
-                                                                    </a>
-                                                                </li>
-
-                                                                <li>
-                                                                    <a href="#" class="tooltip-error" data-rel="tooltip" title="Delete">
-                                                                        <span class="red">
-                                                                            <i class="ace-icon fa fa-trash-o bigger-120"></i>
-                                                                        </span>
-                                                                    </a>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-
-                                            <tr>
-                                                <td class="center">
-                                                    <label class="pos-rel">
-                                                        <input type="checkbox" class="ace" />
-                                                        <span class="lbl"></span>
-                                                    </label>
-                                                </td>
-
-                                                <td>
-                                                    <a href="#">best.com</a>
-                                                </td>
-                                                <td>$75</td>
-                                                <td class="hidden-480">6,500</td>
-                                                <td>Apr 03</td>
-
-                                                <td class="hidden-480">
-                                                    <span class="label label-sm label-inverse arrowed-in">Flagged</span>
-                                                </td>
-
-                                                <td>
-                                                    <div class="hidden-sm hidden-xs btn-group">
-                                                        <button class="btn btn-xs btn-success">
-                                                            <i class="ace-icon fa fa-check bigger-120"></i>
-                                                        </button>
-
-                                                        <button class="btn btn-xs btn-info">
-                                                            <i class="ace-icon fa fa-pencil bigger-120"></i>
-                                                        </button>
-
-                                                        <button class="btn btn-xs btn-danger">
-                                                            <i class="ace-icon fa fa-trash-o bigger-120"></i>
-                                                        </button>
-
-                                                        <button class="btn btn-xs btn-warning">
-                                                            <i class="ace-icon fa fa-flag bigger-120"></i>
-                                                        </button>
-                                                    </div>
-
-                                                    <div class="hidden-md hidden-lg">
-                                                        <div class="inline pos-rel">
-                                                            <button class="btn btn-minier btn-primary dropdown-toggle" data-toggle="dropdown" data-position="auto">
-                                                                <i class="ace-icon fa fa-cog icon-only bigger-110"></i>
-                                                            </button>
-
-                                                            <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
-                                                                <li>
-                                                                    <a href="#" class="tooltip-info" data-rel="tooltip" title="View">
-                                                                        <span class="blue">
-                                                                            <i class="ace-icon fa fa-search-plus bigger-120"></i>
-                                                                        </span>
-                                                                    </a>
-                                                                </li>
-
-                                                                <li>
-                                                                    <a href="#" class="tooltip-success" data-rel="tooltip" title="Edit">
-                                                                        <span class="green">
-                                                                            <i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
-                                                                        </span>
-                                                                    </a>
-                                                                </li>
-
-                                                                <li>
-                                                                    <a href="#" class="tooltip-error" data-rel="tooltip" title="Delete">
-                                                                        <span class="red">
-                                                                            <i class="ace-icon fa fa-trash-o bigger-120"></i>
-                                                                        </span>
-                                                                    </a>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-
-                                            <tr>
-                                                <td class="center">
-                                                    <label class="pos-rel">
-                                                        <input type="checkbox" class="ace" />
-                                                        <span class="lbl"></span>
-                                                    </label>
-                                                </td>
-
-                                                <td>
-                                                    <a href="#">pro.com</a>
-                                                </td>
-                                                <td>$55</td>
-                                                <td class="hidden-480">4,250</td>
-                                                <td>Jan 21</td>
-
-                                                <td class="hidden-480">
-                                                    <span class="label label-sm label-success">Registered</span>
-                                                </td>
-
-                                                <td>
-                                                    <div class="hidden-sm hidden-xs btn-group">
-                                                        <button class="btn btn-xs btn-success">
-                                                            <i class="ace-icon fa fa-check bigger-120"></i>
-                                                        </button>
-
-                                                        <button class="btn btn-xs btn-info">
-                                                            <i class="ace-icon fa fa-pencil bigger-120"></i>
-                                                        </button>
-
-                                                        <button class="btn btn-xs btn-danger">
-                                                            <i class="ace-icon fa fa-trash-o bigger-120"></i>
-                                                        </button>
-
-                                                        <button class="btn btn-xs btn-warning">
-                                                            <i class="ace-icon fa fa-flag bigger-120"></i>
-                                                        </button>
-                                                    </div>
-
-                                                    <div class="hidden-md hidden-lg">
-                                                        <div class="inline pos-rel">
-                                                            <button class="btn btn-minier btn-primary dropdown-toggle" data-toggle="dropdown" data-position="auto">
-                                                                <i class="ace-icon fa fa-cog icon-only bigger-110"></i>
-                                                            </button>
-
-                                                            <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
-                                                                <li>
-                                                                    <a href="#" class="tooltip-info" data-rel="tooltip" title="View">
-                                                                        <span class="blue">
-                                                                            <i class="ace-icon fa fa-search-plus bigger-120"></i>
-                                                                        </span>
-                                                                    </a>
-                                                                </li>
-
-                                                                <li>
-                                                                    <a href="#" class="tooltip-success" data-rel="tooltip" title="Edit">
-                                                                        <span class="green">
-                                                                            <i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
-                                                                        </span>
-                                                                    </a>
-                                                                </li>
-
-                                                                <li>
-                                                                    <a href="#" class="tooltip-error" data-rel="tooltip" title="Delete">
-                                                                        <span class="red">
-                                                                            <i class="ace-icon fa fa-trash-o bigger-120"></i>
-                                                                        </span>
-                                                                    </a>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div><!-- /.span -->
-                            </div><!-- /.row -->
-
-                            <div class="hr hr-18 dotted hr-double"></div>
-
-                            <h4 class="pink">
-                                <i class="ace-icon fa fa-hand-o-right icon-animated-hand-pointer blue"></i>
-                                <a href="#modal-table" role="button" class="green" data-toggle="modal"> Table Inside a Modal Box </a>
-                            </h4>
-
-                            <div class="hr hr-18 dotted hr-double"></div>
-
-
-                            <div id="modal-table" class="modal fade" tabindex="-1">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header no-padding">
-                                            <div class="table-header">
-                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                                                    <span class="white">&times;</span>
-                                                </button>
-                                                Results for "Latest Registered Domains
-                                            </div>
-                                        </div>
-
-                                        <div class="modal-body no-padding">
-                                            <table class="table table-striped table-bordered table-hover no-margin-bottom no-border-top">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Domain</th>
-                                                        <th>Price</th>
-                                                        <th>Clicks</th>
-
-                                                        <th>
-                                                            <i class="ace-icon fa fa-clock-o bigger-110"></i>
-                                                            Update
-                                                        </th>
-                                                    </tr>
-                                                </thead>
-
-                                                <tbody>
-                                                    <tr>
-                                                        <td>
-                                                            <a href="#">ace.com</a>
-                                                        </td>
-                                                        <td>$45</td>
-                                                        <td>3,330</td>
-                                                        <td>Feb 12</td>
-                                                    </tr>
-
-                                                    <tr>
-                                                        <td>
-                                                            <a href="#">base.com</a>
-                                                        </td>
-                                                        <td>$35</td>
-                                                        <td>2,595</td>
-                                                        <td>Feb 18</td>
-                                                    </tr>
-
-                                                    <tr>
-                                                        <td>
-                                                            <a href="#">max.com</a>
-                                                        </td>
-                                                        <td>$60</td>
-                                                        <td>4,400</td>
-                                                        <td>Mar 11</td>
-                                                    </tr>
-
-                                                    <tr>
-                                                        <td>
-                                                            <a href="#">best.com</a>
-                                                        </td>
-                                                        <td>$75</td>
-                                                        <td>6,500</td>
-                                                        <td>Apr 03</td>
-                                                    </tr>
-
-                                                    <tr>
-                                                        <td>
-                                                            <a href="#">pro.com</a>
-                                                        </td>
-                                                        <td>$55</td>
-                                                        <td>4,250</td>
-                                                        <td>Jan 21</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-
-                                        <div class="modal-footer no-margin-top">
-                                            <button class="btn btn-sm btn-danger pull-left" data-dismiss="modal">
-                                                <i class="ace-icon fa fa-times"></i>
-                                                Close
-                                            </button>
-
-                                            <ul class="pagination pull-right no-margin">
-                                                <li class="prev disabled">
-                                                    <a href="#">
-                                                        <i class="ace-icon fa fa-angle-double-left"></i>
-                                                    </a>
-                                                </li>
-
-                                                <li class="active">
-                                                    <a href="#">1</a>
-                                                </li>
-
-                                                <li>
-                                                    <a href="#">2</a>
-                                                </li>
-
-                                                <li>
-                                                    <a href="#">3</a>
-                                                </li>
-
-                                                <li class="next">
-                                                    <a href="#">
-                                                        <i class="ace-icon fa fa-angle-double-right"></i>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div><!-- /.modal-content -->
-                                </div><!-- /.modal-dialog -->
-                            </div><!-- PAGE CONTENT ENDS -->
+                            <!-- PAGE CONTENT ENDS -->
                         </div><!-- /.col -->
                     </div><!-- /.row -->
                 </div><!-- /.page-content -->
@@ -1550,37 +1021,32 @@
     </div><!-- /.main-container -->
     <!-- basic scripts -->
     <!--[if !IE]> -->
-    <script src="~/Content/TemplateAdmin/assets/js/jquery.2.1.1.min.js"></script>
+    <script src="~/Content/ace-master/assets/js/jquery.2.1.1.min.js"></script>
 
     <!-- <![endif]-->
     <!--[if IE]>
-    <script src="~/Content/TemplateAdmin/assets/js/jquery.1.11.1.min.js"></script>
+    <script src="~/Content/ace-master/assets/js/jquery.1.11.1.min.js"></script>
     <![endif]-->
     <!--[if !IE]> -->
     <script type="text/javascript">
-        window.jQuery || document.write("<script src='~/Content/TemplateAdmin/assets/js/jquery.min.js'>" + "<" + "/script>");
+        window.jQuery || document.write("<script src='~/Content/ace-master/assets/js/jquery.min.js'>" + "<" + "/script>");
     </script>
 
     <!-- <![endif]-->
     <!--[if IE]>
     <script type="text/javascript">
-     window.jQuery || document.write("<script src='~/Content/TemplateAdmin/assets/js/jquery1x.min.js'>"+"<"+"/script>");
+     window.jQuery || document.write("<script src='~/Content/ace-master/assets/js/jquery1x.min.js'>"+"<"+"/script>");
     </script>
     <![endif]-->
     <script type="text/javascript">
-        if ('ontouchstart' in document.documentElement) document.write("<script src='~/Content/TemplateAdmin/assets/js/jquery.mobile.custom.min.js'>" + "<" + "/script>");
+        if ('ontouchstart' in document.documentElement) document.write("<script src='~/Content/ace-master/assets/js/jquery.mobile.custom.min.js'>" + "<" + "/script>");
     </script>
-    <script src="~/Content/TemplateAdmin/assets/js/bootstrap.min.js"></script>
+    <script src="~/Content/ace-master/assets/js/bootstrap.min.js"></script>
 
     <!-- page specific plugin scripts -->
-    <script src="~/Content/TemplateAdmin/assets/js/jquery.dataTables.min.js"></script>
-    <script src="~/Content/TemplateAdmin/assets/js/jquery.dataTables.bootstrap.min.js"></script>
-    <script src="~/Content/TemplateAdmin/assets/js/dataTables.tableTools.min.js"></script>
-    <script src="~/Content/TemplateAdmin/assets/js/dataTables.colVis.min.js"></script>
-
     <!-- ace scripts -->
-    <script src="~/Content/TemplateAdmin/assets/js/ace-elements.min.js"></script>
-    <script src="~/Content/TemplateAdmin/assets/js/ace.min.js"></script>
+    <script src="~/Content/ace-master/assets/js/ace-elements.min.js"></script>
+    <script src="~/Content/ace-master/assets/js/ace.min.js"></script>
 
     <!-- inline scripts related to this page -->
     @RenderSection("Scripts", required: false)

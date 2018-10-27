@@ -9,7 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using qlcdvien.Models;
-
+using PagedList;
 namespace qlcdvien.Controllers
 {
     public class HoatdongCongdoansController : Controller
@@ -17,20 +17,37 @@ namespace qlcdvien.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: HoatdongCongdoans
-        public ActionResult Index(string daterangepicker)
+        public ActionResult Index(string daterangepicker, int? page, string currentFilter)
         {
             daterangepicker = Request["date-range-picker"];
+            if (daterangepicker != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                daterangepicker = currentFilter;
+            }
+
+            
+
+            
+            ViewBag.CurrentFilter = daterangepicker;
+
             var hoatdongCongdoans = db.HoatdongCongdoans.Include(i => i.ApplicationUser);
             if (!String.IsNullOrEmpty(daterangepicker)) // kiểm tra chuỗi tìm kiếm có rỗng/null hay không
             {
                 DateTime d1 = DateTime.ParseExact(daterangepicker.Split(' ').First(), "MM/dd/yyyy", null);
-                DateTime d2 = DateTime.ParseExact(daterangepicker.Split(' ').Last(), "MM/dd/yyyy", null);
+                DateTime d2 = DateTime.ParseExact(daterangepicker.Split(' ').Last(), "MM/dd/yyyy", null).AddDays(1);
                 hoatdongCongdoans = hoatdongCongdoans
        .Where(n => n.ngaydang >= d1)
        .Where(n => n.ngaydang <=d2);
             
         }
-            return View(hoatdongCongdoans.OrderByDescending(x=>x.ngaydang).ToList());
+            //return View(hoatdongCongdoans.OrderByDescending(x=>x.ngaydang).ToList());
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            return View(hoatdongCongdoans.OrderByDescending(x => x.ngaydang).ToPagedList(pageNumber, pageSize));
         }
 
         // GET: HoatdongCongdoans/Details/5
