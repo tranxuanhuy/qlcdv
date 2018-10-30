@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
 using System.Web.Services;
+using Newtonsoft.Json;
 using qlcdvien.Models;
 
 namespace qlcdvien.Controllers
@@ -101,7 +102,7 @@ namespace qlcdvien.Controllers
         public string GetChartData()
         {
 
-            List<object> chartData = new List<object>();
+            List<ChartData> chartData = new List<ChartData>();
             var content = db.CapCongDoans.Select(s => new
             {
                 s.Capcongdoan_id,
@@ -110,18 +111,17 @@ namespace qlcdvien.Controllers
             });
             foreach (var item in content)
             {
-                CapCongDoan fh = db.CapCongDoans.Find(item.parent);
-                string currentName1 = fh == null ? "" : db.Entry(fh).Property(u => u.name).CurrentValue;
-                chartData.Add(new object[]
-                    {
-                        item.name,currentName1,""
-                    });
+                //CapCongDoan fh = db.CapCongDoans.Find(item.parent);
+                //string currentName1 = fh == null ? "" : db.Entry(fh).Property(u => u.name).CurrentValue;
+                chartData.Add(new ChartData
+                    (
+                        item.Capcongdoan_id.ToString(),item.name,item.parent.ToString()
+                    ));
             }
 
 
-            var jsonSerialiser = new JavaScriptSerializer();
-            var json = jsonSerialiser.Serialize(chartData);
-            return json;
+            var output = JsonConvert.SerializeObject(chartData);
+            return output;
         }
         // GET: CapCongDoans/Details/5
         public ActionResult Details(int? id)
