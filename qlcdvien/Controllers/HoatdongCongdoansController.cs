@@ -17,7 +17,7 @@ namespace qlcdvien.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: HoatdongCongdoans
-        public ActionResult Index(string daterangepicker, int? page, string currentFilter)
+        public ActionResult Index(string daterangepicker, int? page, string dateFilter, string searchString, string currentFilter)
         {
             daterangepicker = Request["date-range-picker"];
             if (daterangepicker != null)
@@ -26,13 +26,19 @@ namespace qlcdvien.Controllers
             }
             else
             {
-                daterangepicker = currentFilter;
+                daterangepicker = dateFilter;
+            }   
+            ViewBag.DateFilter = daterangepicker;
+
+            if (searchString != null)
+            {
+                page = 1;
             }
-
-            
-
-            
-            ViewBag.CurrentFilter = daterangepicker;
+            else
+            {
+                searchString = currentFilter;
+            }
+            ViewBag.CurrentFilter = searchString;
 
             var hoatdongCongdoans = db.HoatdongCongdoans.Include(i => i.ApplicationUser);
             if (!String.IsNullOrEmpty(daterangepicker)) // kiểm tra chuỗi tìm kiếm có rỗng/null hay không
@@ -44,6 +50,11 @@ namespace qlcdvien.Controllers
        .Where(n => n.ngaydang <=d2);
             
         }
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                hoatdongCongdoans = hoatdongCongdoans.Where(s => s.Tieude.Contains(searchString)
+                                       || s.NoiDung.Contains(searchString));
+            }
             //return View(hoatdongCongdoans.OrderByDescending(x=>x.ngaydang).ToList());
             int pageSize = 10;
             int pageNumber = (page ?? 1);
@@ -116,7 +127,7 @@ namespace qlcdvien.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Hoatdong_Id,NoiDung,Tieude,Anhhoatdong,ngaydang,daDuyet")] HoatdongCongdoan hoatdongCongdoan,string nguoidang_id="")
+        public ActionResult Edit([Bind(Include = "Hoatdong_Id,NoiDung,Tieude,Anhhoatdong,daDuyet")] HoatdongCongdoan hoatdongCongdoan,string nguoidang_id="")
         {
             if (ModelState.IsValid)
             {
@@ -125,6 +136,7 @@ namespace qlcdvien.Controllers
 
                 hoatdongCongdoan.nguoidang_id = nguoidang_id;
                 db.Entry(hoatdongCongdoan).State = EntityState.Modified;
+                db.Entry(hoatdongCongdoan).Property("ngaydang").IsModified = false;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
