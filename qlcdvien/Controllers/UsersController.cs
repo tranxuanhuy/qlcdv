@@ -52,7 +52,7 @@ namespace qlcdvien.Controllers
                 _userManager = value;
             }
         }
-        public ActionResult Index1()
+        public ActionResult Index1(string listItem)
         {
             List<User> users = new List<User>();
             var config = new MapperConfiguration(cfg => {
@@ -66,9 +66,19 @@ namespace qlcdvien.Controllers
             {
                 users.Add(iMapper.Map<ApplicationUser, User>(item));
             }
-            return View(users);
+            var categories = from c in new ApplicationDbContext().CapCongDoans orderby c.motaphancap select c;
+            ViewBag.ListItem = new SelectList(categories, "Capcongdoan_id", "namephancap"); // danh sách CapCongDoan
 
-           
+            
+            if (!String.IsNullOrEmpty(listItem))
+            {
+                var userstemp = users.AsQueryable();
+                userstemp = userstemp.Where(s => s.CapCongDoan.motaphancap.Contains("-"+listItem+"-"));
+                users = userstemp.ToList();
+            }
+                return View(users);
+
+            
         }
         // GET: Users
         public ActionResult Index()
@@ -184,8 +194,8 @@ namespace qlcdvien.Controllers
             {
                 return HttpNotFound();
             }
-            var categories = from c in new ApplicationDbContext().CapCongDoans select c;
-            ViewBag.CapCongDoanID = new SelectList(categories, "Capcongdoan_id", "name",user.CapCongDoan.Capcongdoan_id); // danh sách CapCongDoan
+            var categories = from c in new ApplicationDbContext().CapCongDoans orderby c.motaphancap select c;
+            ViewBag.CapCongDoanID = new SelectList(categories, "Capcongdoan_id", "namephancap",user.CapCongDoan.Capcongdoan_id); // danh sách CapCongDoan
             return View(user);
         }
 

@@ -26,7 +26,8 @@
         public string name { get; set; }
 
         public int? parent { get; set; }
-
+        public string motaphancap { get; set; }
+        public string namephancap { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ApplicationUser> ApplicationUsers { get; set; }
 

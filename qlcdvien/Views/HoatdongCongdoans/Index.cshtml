@@ -1,5 +1,9 @@
 ﻿@model PagedList.IPagedList<qlcdvien.Models.HoatdongCongdoan>
 @using PagedList.Mvc;
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+
+}
 <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 @{
     /**/
@@ -15,30 +19,36 @@
 <!-- Đoạn cần thêm -->
 @using (Html.BeginForm())
 {
-    <p>
-        <label for="id-date-range-picker-1">Date Range Picker</label>
+<div class="form-horizontal">
 
-        <div class="row">
-            <div class="col-xs-8 col-sm-11">
-                <div class="input-group">
-                    <span class="input-group-addon">
-                        <i class="fa fa-calendar bigger-110"></i>
-                    </span>
+    <label for="id-date-range-picker-1">Date Range Picker</label>
+
+    <div class="row">
+        <div class="col-xs-8 col-sm-4">
+            <div class="input-group">
+                <span class="input-group-addon">
+                    <i class="fa fa-calendar bigger-110"></i>
+                </span>
 
 
 
 
-                    <input class="form-control" type="text" name="date-range-picker" id="id-date-range-picker-1" value="@ViewBag.DateFilter" />
-                    Find by content: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
-                    <button class="btn btn-info" type="submit">
-                        <i class="ace-icon fa fa-check bigger-110"></i>
-                        Submit
-                    </button>
-                </div>
+                <input class="form-control" type="text" name="date-range-picker" id="id-date-range-picker-1" value="@ViewBag.DateFilter" />
+
             </div>
-        </div>
 
-    </p>
+            Find by content:
+            <br />
+            @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+            <button class="btn btn-info" type="submit">
+                <i class="ace-icon fa fa-check bigger-110"></i>
+                Submit
+            </button>
+        </div>
+    </div>
+    <button id="exportbtn"class="btn btn-default">Export</button>
+
+</div>
 }
 Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
 @Html.PagedListPager(Model, page => Url.Action("Index",
@@ -60,20 +70,20 @@ Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.Page
                 @Html.DisplayFor(modelItem => item.ngaydang)
                 @Html.DisplayFor(modelItem => item.ApplicationUser.name)
 
-            </td>
-
-
-
-            <td>
+                <br />
                 @Html.ActionLink("Edit", "Edit", new { id = item.Hoatdong_Id }) |
                 @Html.ActionLink("Details", "Details", new { id = item.Hoatdong_Id }) |
                 @Html.ActionLink("Delete", "Delete", new { id = item.Hoatdong_Id })
             </td>
+
+
+
+        
         </tr>
     }
 
 </table>
-<button>Export</button>
+
 
 Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
 
@@ -169,7 +179,7 @@ Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.Page
                 $('.limiterBox,.autosizejs').remove();
                 $('.daterangepicker.dropdown-menu,.colorpicker.dropdown-menu,.bootstrap-datetimepicker-widget.dropdown-menu').remove();
             });
-            $("button").click(function () {
+            $("#exportbtn").click(function () {
                 $(".table").table2excel({
                     // exclude CSS class
                     exclude: ".noExl",
