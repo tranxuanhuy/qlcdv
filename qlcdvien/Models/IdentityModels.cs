@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
@@ -21,6 +22,7 @@ namespace qlcdvien.Models
             return userIdentity;
         }
         [StringLength(50)]
+        [DisplayName("Họ tên")]
         public string name { get; set; }
 
         [Column(TypeName = "date")]

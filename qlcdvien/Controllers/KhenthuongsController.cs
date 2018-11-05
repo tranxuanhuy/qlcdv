@@ -100,7 +100,7 @@ namespace qlcdvien.Controllers
                 return HttpNotFound();
             }
             ViewBag.cdv_id = new SelectList(db.Users, "Id", "name", khenthuong.cdv_id);
-            ViewBag.tochuc_id = new SelectList(db.CapCongDoans, "Capcongdoan_id", "name", khenthuong.tochuc_id);
+            ViewBag.tochuc_id = new SelectList(db.CapCongDoans.OrderBy(s=>s.motaphancap), "Capcongdoan_id", "namephancap", khenthuong.tochuc_id);
             return View(khenthuong);
         }
 

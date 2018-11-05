@@ -17,10 +17,13 @@
         [DisplayName("Ngày khen thưởng")]
         public DateTime? ngaykhenthuong { get; set; }
 
+        [DisplayName("Hình thức")]
         public string hinhthuc { get; set; }
 
+        [DisplayName("Số quyết định")]
         public string soquyetdinh { get; set; }
 
+        [DisplayName("Cấp khen thưởng")]
         public string capkhenthuong { get; set; }
 
         [StringLength(128)]
@@ -28,8 +31,10 @@
 
         public int? tochuc_id { get; set; }
 
+        [DisplayName("Bản scan")]
         public string scanurl { get; set; }
 
+        [DisplayName("Đối tượng khen thưởng")]
         public bool? doituongKhenthuong { get; set; }
 
         public virtual ApplicationUser ApplicationUser { get; set; }
