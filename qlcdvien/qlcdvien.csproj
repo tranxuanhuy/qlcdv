@@ -210,6 +210,7 @@
     <Compile Include="Controllers\ChartData.cs" />
     <Compile Include="Controllers\HoatdongCongdoansController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\KhenthuongsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\TreeNode.cs" />
     <Compile Include="Controllers\UsersController.cs" />
@@ -561,9 +562,15 @@
     <Content Include="Views\Users\Index.cshtml" />
     <Content Include="Views\Users\Index1.cshtml" />
     <Content Include="Views\Shared\_LayoutBlank.cshtml" />
+    <Content Include="Views\Khenthuongs\Create.cshtml" />
+    <Content Include="Views\Khenthuongs\Delete.cshtml" />
+    <Content Include="Views\Khenthuongs\Details.cshtml" />
+    <Content Include="Views\Khenthuongs\Edit.cshtml" />
+    <Content Include="Views\Khenthuongs\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Image\Khenthuong\" />
     <Folder Include="Image\Profile\" />
   </ItemGroup>
   <ItemGroup>

@@ -1,7 +1,8 @@
-namespace qlcdvien.Models
+﻿namespace qlcdvien.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
@@ -13,6 +14,7 @@ namespace qlcdvien.Models
         public int Khenthuong_id { get; set; }
 
         [Column(TypeName = "date")]
+        [DisplayName("Ngày khen thưởng")]
         public DateTime? ngaykhenthuong { get; set; }
 
         public string hinhthuc { get; set; }

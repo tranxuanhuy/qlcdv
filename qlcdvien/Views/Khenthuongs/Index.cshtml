@@ -1,0 +1,78 @@
+﻿@model IEnumerable<qlcdvien.Models.Khenthuong>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ApplicationUser.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CapCongDoan.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ngaykhenthuong)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.hinhthuc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.soquyetdinh)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.capkhenthuong)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.scanurl)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.doituongKhenthuong)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ApplicationUser.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CapCongDoan.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ngaykhenthuong)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.hinhthuc)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.soquyetdinh)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.capkhenthuong)
+        </td>
+        <td>
+            <a href="/Khenthuongs/DownloadFile?file=@item.scanurl" >Download</a>
+            @*<a href="/Khenthuongs/DownloadFile?file=@item.scanurl" target="_blank">Download</a>*@
+            @*@Html.DisplayFor(modelItem => item.scanurl)*@
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.doituongKhenthuong)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Khenthuong_id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Khenthuong_id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Khenthuong_id })
+        </td>
+    </tr>
+}
+
+</table>

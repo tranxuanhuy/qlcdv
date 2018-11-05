@@ -118,7 +118,20 @@
             function initiateDemoData() {
                 var tree_data = {
                     'for-sale0': { text: 'Tổ CĐ phòng kế hoạch', type: 'item' },
-                    'for-sale1': { text: 'Tổ CĐ phòng tổ chức CB-LĐ', type: 'item' },                    'for-sale2': { text: 'Tổ CĐ phòng tài chính', type: 'item' },                    'for-sale3': { text: 'Tổ CĐ phòng kỹ thuật', type: 'item' },                    'for-sale4': { text: 'Tổ CĐ phòng không lưu', type: 'item' },                    'for-sale5': { text: 'Tổ CĐ phòng an toàn - an ninh', type: 'item' },                    'for-sale6': { text: 'Tổ CĐ phòng Trung tâm HĐ-TKCN', type: 'item' },                    'for-sale7': { text: 'CĐBP Văn phòng', type: 'folder' },                    'for-sale8': { text: 'CĐBP Trung tâm TCTS', type: 'folder' },                    'for-sale9': { text: 'CĐBP Trung tâm BĐKT', type: 'folder' },                    'for-sale10': { text: 'CĐBP Khí tượng hàng không Đà Nẵng', type: 'folder' },                    'for-sale11': { text: 'CĐBP Đài KSKL Phú Bài', type: 'folder' },                    'for-sale12': { text: 'CĐBP Đài KSKL Chu Lai', type: 'folder' },                    'for-sale13': { text: 'CĐBP Đài KSKL Phù Cát', type: 'folder' },                    'for-sale14': { text: 'CĐBP Đài KSKL Pleiku', type: 'folder' },
+                    'for-sale1': { text: 'Tổ CĐ phòng tổ chức CB-LĐ', type: 'item' },
+                    'for-sale2': { text: 'Tổ CĐ phòng tài chính', type: 'item' },
+                    'for-sale3': { text: 'Tổ CĐ phòng kỹ thuật', type: 'item' },
+                    'for-sale4': { text: 'Tổ CĐ phòng không lưu', type: 'item' },
+                    'for-sale5': { text: 'Tổ CĐ phòng an toàn - an ninh', type: 'item' },
+                    'for-sale6': { text: 'Tổ CĐ phòng Trung tâm HĐ-TKCN', type: 'item' },
+                    'for-sale7': { text: 'CĐBP Văn phòng', type: 'folder' },
+                    'for-sale8': { text: 'CĐBP Trung tâm TCTS', type: 'folder' },
+                    'for-sale9': { text: 'CĐBP Trung tâm BĐKT', type: 'folder' },
+                    'for-sale10': { text: 'CĐBP Khí tượng hàng không Đà Nẵng', type: 'folder' },
+                    'for-sale11': { text: 'CĐBP Đài KSKL Phú Bài', type: 'folder' },
+                    'for-sale12': { text: 'CĐBP Đài KSKL Chu Lai', type: 'folder' },
+                    'for-sale13': { text: 'CĐBP Đài KSKL Phù Cát', type: 'folder' },
+                    'for-sale14': { text: 'CĐBP Đài KSKL Pleiku', type: 'folder' },
                 }
                 tree_data['for-sale7']['additionalParameters'] = {
                     'children': {
@@ -139,32 +152,52 @@
                 }
                 tree_data['for-sale9']['additionalParameters'] = {
                     'children': {
-                        'classics0': { text: 'Tổ CĐ Đội thông tin', type: 'item' },                        'classics1': { text: 'Tổ CĐ Đội công nghệ thông tin', type: 'item' },                        'classics2': { text: 'Tổ CĐ Đội cơ điện', type: 'item' },                        'classics3': { text: 'Tổ CĐ Đội kỹ thuật khí tượng', type: 'item' },                        'classics4': { text: 'Tổ CĐ Đội radar Sơn trà', type: 'item' },                        'classics5': { text: 'Tổ CĐ Đội radar Quy nhơn', type: 'item' },
+                        'classics0': { text: 'Tổ CĐ Đội thông tin', type: 'item' },
+                        'classics1': { text: 'Tổ CĐ Đội công nghệ thông tin', type: 'item' },
+                        'classics2': { text: 'Tổ CĐ Đội cơ điện', type: 'item' },
+                        'classics3': { text: 'Tổ CĐ Đội kỹ thuật khí tượng', type: 'item' },
+                        'classics4': { text: 'Tổ CĐ Đội radar Sơn trà', type: 'item' },
+                        'classics5': { text: 'Tổ CĐ Đội radar Quy nhơn', type: 'item' },
                     }
                 }
                 tree_data['for-sale10']['additionalParameters'] = {
                     'children': {
-                        'classics0': { text: 'Tổ CĐ Dự báo', type: 'item' },                        'classics1': { text: 'Tổ CĐ Quan trắc', type: 'item' },                        'classics2': { text: 'Tổ CĐ Đội cơ điện', type: 'item' },                    
+                        'classics0': { text: 'Tổ CĐ Dự báo', type: 'item' },
+                        'classics1': { text: 'Tổ CĐ Quan trắc', type: 'item' },
+                        'classics2': { text: 'Tổ CĐ Đội cơ điện', type: 'item' },
+                    
                     }
                 }
                 tree_data['for-sale11']['additionalParameters'] = {
                     'children': {
-                        'classics0': { text: 'Tổ CĐ Không lưu', type: 'item' },                        'classics1': { text: 'Tổ CĐ Kỹ thuật - An ninh - Phục vụ', type: 'item' },                        'classics2': { text: 'Tổ CĐ Phục vụ bay', type: 'item' },                    
+                        'classics0': { text: 'Tổ CĐ Không lưu', type: 'item' },
+                        'classics1': { text: 'Tổ CĐ Kỹ thuật - An ninh - Phục vụ', type: 'item' },
+                        'classics2': { text: 'Tổ CĐ Phục vụ bay', type: 'item' },
+                    
                     }
                 }
                 tree_data['for-sale12']['additionalParameters'] = {
                     'children': {
-                        'classics0': { text: 'Tổ CĐ Không lưu', type: 'item' },                        'classics1': { text: 'Tổ CĐ Kỹ thuật - An ninh - Phục vụ', type: 'item' },                        'classics2': { text: 'Tổ CĐ Phục vụ bay', type: 'item' },
+                        'classics0': { text: 'Tổ CĐ Không lưu', type: 'item' },
+                        'classics1': { text: 'Tổ CĐ Kỹ thuật - An ninh - Phục vụ', type: 'item' },
+                        'classics2': { text: 'Tổ CĐ Phục vụ bay', type: 'item' },
+
                     }
                 }
                 tree_data['for-sale13']['additionalParameters'] = {
                     'children': {
-                        'classics0': { text: 'Tổ CĐ Không lưu', type: 'item' },                        'classics1': { text: 'Tổ CĐ Kỹ thuật - An ninh - Phục vụ', type: 'item' },                        'classics2': { text: 'Tổ CĐ Phục vụ bay', type: 'item' },
+                        'classics0': { text: 'Tổ CĐ Không lưu', type: 'item' },
+                        'classics1': { text: 'Tổ CĐ Kỹ thuật - An ninh - Phục vụ', type: 'item' },
+                        'classics2': { text: 'Tổ CĐ Phục vụ bay', type: 'item' },
+
                     }
                 }
                 tree_data['for-sale14']['additionalParameters'] = {
                     'children': {
-                        'classics0': { text: 'Tổ CĐ Không lưu', type: 'item' },                        'classics1': { text: 'Tổ CĐ Kỹ thuật - An ninh - Phục vụ', type: 'item' },                        'classics2': { text: 'Tổ CĐ Phục vụ bay', type: 'item' },
+                        'classics0': { text: 'Tổ CĐ Không lưu', type: 'item' },
+                        'classics1': { text: 'Tổ CĐ Kỹ thuật - An ninh - Phục vụ', type: 'item' },
+                        'classics2': { text: 'Tổ CĐ Phục vụ bay', type: 'item' },
+
                     }
                 }
               
