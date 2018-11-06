@@ -6,111 +6,97 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
-using System.Web.Hosting;
 using System.Web.Mvc;
 using qlcdvien.Models;
 
 namespace qlcdvien.Controllers
 {
-    public class KhenthuongsController : Controller
+    public class KhenthuongtapthesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-        public ActionResult DownloadFile(string file = "")
-        {
 
-            file = HostingEnvironment.MapPath("~" + file);
-
-            string contentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
-            var fileName = Path.GetFileName(file);
-            return File(file, contentType, fileName);
-
-        }
-        // GET: Khenthuongs
+        // GET: Khenthuongtapthes
         public ActionResult Index()
         {
-            //var khenthuongs = db.Khenthuongs.Include(k => k.ApplicationUser).Include(k => k.CapCongDoan);
-            var khenthuongs = db.Khenthuongs.Include(k => k.ApplicationUser);
-            return View(khenthuongs.ToList());
+            var khenthuongtapthes = db.Khenthuongtapthes.Include(k => k.CapCongDoan);
+            return View(khenthuongtapthes.ToList());
         }
 
-        // GET: Khenthuongs/Details/5
+        // GET: Khenthuongtapthes/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Khenthuong khenthuong = db.Khenthuongs.Find(id);
-            if (khenthuong == null)
+            Khenthuongtapthe khenthuongtapthe = db.Khenthuongtapthes.Find(id);
+            if (khenthuongtapthe == null)
             {
                 return HttpNotFound();
             }
-            return View(khenthuong);
+            return View(khenthuongtapthe);
         }
 
-        // GET: Khenthuongs/Create
+        // GET: Khenthuongtapthes/Create
         public ActionResult Create()
         {
-            ViewBag.cdv_id = new SelectList(db.Users, "Id", "name");
-            ViewBag.tochuc_id = new SelectList(db.CapCongDoans, "Capcongdoan_id", "name");
+            ViewBag.tochuc_id = new SelectList(db.CapCongDoans.OrderBy(s=>s.motaphancap), "Capcongdoan_id", "namephancap");
             return View();
         }
 
-        // POST: Khenthuongs/Create
+        // POST: Khenthuongtapthes/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Khenthuong_id,ngaykhenthuong,hinhthuc,soquyetdinh,capkhenthuong,cdv_id,tochuc_id,scanurl,doituongKhenthuong")] Khenthuong khenthuong, HttpPostedFileBase uploadImage)
+        public ActionResult Create([Bind(Include = "Khenthuong_id,ngaykhenthuong,hinhthuc,soquyetdinh,capkhenthuong,tochuc_id,scanurl")] Khenthuongtapthe khenthuongtapthe, HttpPostedFileBase uploadImage)
         {
             if (ModelState.IsValid)
             {
                 if (uploadImage != null)
                 {
-                  
-                    
+
+
                     //nap anh moi
                     //string filename = Path.GetFileNameWithoutExtension(uploadImage.FileName);
                     string extension = Path.GetExtension(uploadImage.FileName);
-                    string filename = khenthuong.Khenthuong_id + DateTime.Now.ToString("yymmssfff") + extension;
-                    khenthuong.scanurl = "/Image/Khenthuong/" + filename;
+                    string filename = khenthuongtapthe.Khenthuong_id + DateTime.Now.ToString("yymmssfff") + extension;
+                    khenthuongtapthe.scanurl = "/Image/Khenthuong/" + filename;
                     filename = Path.Combine(Server.MapPath("~/Image/Khenthuong/"), filename);
                     uploadImage.SaveAs(filename);
                 }
 
-                db.Khenthuongs.Add(khenthuong);
+                db.Khenthuongtapthes.Add(khenthuongtapthe);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.cdv_id = new SelectList(db.Users, "Id", "name", khenthuong.cdv_id);
-            //ViewBag.tochuc_id = new SelectList(db.CapCongDoans, "Capcongdoan_id", "name", khenthuong.tochuc_id);
-            return View(khenthuong);
+            ViewBag.tochuc_id = new SelectList(db.CapCongDoans, "Capcongdoan_id", "name", khenthuongtapthe.tochuc_id);
+            return View(khenthuongtapthe);
         }
 
-        // GET: Khenthuongs/Edit/5
+        // GET: Khenthuongtapthes/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Khenthuong khenthuong = db.Khenthuongs.Find(id);
-            if (khenthuong == null)
+            Khenthuongtapthe khenthuongtapthe = db.Khenthuongtapthes.Find(id);
+            if (khenthuongtapthe == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.cdv_id = new SelectList(db.Users, "Id", "name", khenthuong.cdv_id);
-            //ViewBag.tochuc_id = new SelectList(db.CapCongDoans.OrderBy(s=>s.motaphancap), "Capcongdoan_id", "namephancap", khenthuong.tochuc_id);
-            return View(khenthuong);
+            ViewBag.tochuc_id = new SelectList(db.CapCongDoans.OrderBy(s => s.motaphancap), "Capcongdoan_id", "namephancap", khenthuongtapthe.tochuc_id);
+            return View(khenthuongtapthe);
         }
 
-        // POST: Khenthuongs/Edit/5
+        // POST: Khenthuongtapthes/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Khenthuong_id,ngaykhenthuong,hinhthuc,soquyetdinh,capkhenthuong,cdv_id,tochuc_id,scanurl,doituongKhenthuong")] Khenthuong khenthuong, HttpPostedFileBase uploadImage)
+        public ActionResult Edit([Bind(Include = "Khenthuong_id,ngaykhenthuong,hinhthuc,soquyetdinh,capkhenthuong,tochuc_id,scanurl")] Khenthuongtapthe khenthuongtapthe, HttpPostedFileBase uploadImage)
         {
             if (ModelState.IsValid)
             {
@@ -123,58 +109,55 @@ namespace qlcdvien.Controllers
                     {
                         System.IO.File.Delete(filePath);
                     }
-                    
+
                     //nap anh moi
                     //string filename = Path.GetFileNameWithoutExtension(uploadImage.FileName);
                     string extension = Path.GetExtension(uploadImage.FileName);
-                    string filename = khenthuong.Khenthuong_id + DateTime.Now.ToString("yymmssfff") + extension;
-                    khenthuong.scanurl = "/Image/Khenthuong/" + filename;
+                    string filename = khenthuongtapthe.Khenthuong_id + DateTime.Now.ToString("yymmssfff") + extension;
+                    khenthuongtapthe.scanurl = "/Image/Khenthuong/" + filename;
                     filename = Path.Combine(Server.MapPath("~/Image/Khenthuong/"), filename);
                     uploadImage.SaveAs(filename);
                 }
                 else
                 {
-                    khenthuong.scanurl = Request["oldurl"];
+                    khenthuongtapthe.scanurl = Request["oldurl"];
                 }
-                db.Entry(khenthuong).State = EntityState.Modified;
+                db.Entry(khenthuongtapthe).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.cdv_id = new SelectList(db.Users, "Id", "name", khenthuong.cdv_id);
-            //ViewBag.tochuc_id = new SelectList(db.CapCongDoans, "Capcongdoan_id", "name", khenthuong.tochuc_id);
-            return View(khenthuong);
+            ViewBag.tochuc_id = new SelectList(db.CapCongDoans, "Capcongdoan_id", "name", khenthuongtapthe.tochuc_id);
+            return View(khenthuongtapthe);
         }
 
-        // GET: Khenthuongs/Delete/5
+        // GET: Khenthuongtapthes/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Khenthuong khenthuong = db.Khenthuongs.Find(id);
-            if (khenthuong == null)
+            Khenthuongtapthe khenthuongtapthe = db.Khenthuongtapthes.Find(id);
+            if (khenthuongtapthe == null)
             {
                 return HttpNotFound();
             }
-            return View(khenthuong);
+            return View(khenthuongtapthe);
         }
 
-        // POST: Khenthuongs/Delete/5
+        // POST: Khenthuongtapthes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Khenthuong khenthuong = db.Khenthuongs.Find(id);
-
+            Khenthuongtapthe khenthuongtapthe = db.Khenthuongtapthes.Find(id);
             //xoa anh cu
-            var filePath = Server.MapPath(khenthuong.scanurl);
+            var filePath = Server.MapPath(khenthuongtapthe.scanurl);
             if (System.IO.File.Exists(filePath))
             {
                 System.IO.File.Delete(filePath);
             }
-
-            db.Khenthuongs.Remove(khenthuong);
+            db.Khenthuongtapthes.Remove(khenthuongtapthe);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

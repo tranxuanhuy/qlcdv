@@ -103,6 +103,8 @@ namespace qlcdvien.Models
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HoatdongCongdoan> HoatdongCongdoans { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Ykien> Ykiens { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Khenthuong> Khenthuongs { get; set; }
@@ -120,8 +122,10 @@ namespace qlcdvien.Models
         
         public virtual DbSet<CapCongDoan> CapCongDoans { get; set; }
         public virtual DbSet<HoatdongCongdoan> HoatdongCongdoans { get; set; }
+        public virtual DbSet<Ykien> Ykiens { get; set; }
         public virtual DbSet<Khenthuong> Khenthuongs { get; set; }
-        
+        public virtual DbSet<Khenthuongtapthe> Khenthuongtapthes { get; set; }
+
         public virtual DbSet<Log> Logs { get; set; }
         public virtual DbSet<QuaTrinhChuyenCongDoan> QuaTrinhChuyenCongDoans { get; set; }
 
@@ -156,6 +160,11 @@ namespace qlcdvien.Models
                 .HasForeignKey(e => e.nguoidang_id);
 
             modelBuilder.Entity<ApplicationUser>()
+               .HasMany(e => e.Ykiens)
+               .WithOptional(e => e.ApplicationUser)
+               .HasForeignKey(e => e.nguoidang_id);
+
+            modelBuilder.Entity<ApplicationUser>()
                 .HasMany(e => e.Khenthuongs)
                 .WithOptional(e => e.ApplicationUser)
                 .HasForeignKey(e => e.cdv_id);
@@ -181,12 +190,14 @@ namespace qlcdvien.Models
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<CapCongDoan>()
-                .HasMany(e => e.Khenthuongs)
+                .HasMany(e => e.Khenthuongtapthes)
                 .WithOptional(e => e.CapCongDoan)
                 .HasForeignKey(e => e.tochuc_id);
 
             
         }
+
+        
 
         //public System.Data.Entity.DbSet<qlcdvien.Models.ApplicationUser> ApplicationUsers { get; set; }
 

@@ -52,7 +52,9 @@ namespace qlcdvien.Controllers
                 _userManager = value;
             }
         }
-        public ActionResult Index1(string listItem)
+        public ActionResult Index1(string listItem,string gender, string searchString, string currentFilter, string searchString1, string currentFilter1,
+            string searchString2, string currentFilter2,
+            string searchString3, string currentFilter3)
         {
             List<User> users = new List<User>();
             var config = new MapperConfiguration(cfg => {
@@ -68,15 +70,95 @@ namespace qlcdvien.Controllers
             }
             var categories = from c in new ApplicationDbContext().CapCongDoans orderby c.motaphancap select c;
             ViewBag.ListItem = new SelectList(categories, "Capcongdoan_id", "namephancap"); // danh sách CapCongDoan
+            ViewBag.Gender = gender;
 
-            
+            var userstemp = users.AsQueryable();
             if (!String.IsNullOrEmpty(listItem))
             {
-                var userstemp = users.AsQueryable();
+                
                 userstemp = userstemp.Where(s => s.CapCongDoan.motaphancap.Contains("-"+listItem+"-"));
-                users = userstemp.ToList();
+                
             }
-                return View(users);
+            if (gender=="Male")
+            {
+               
+                userstemp = userstemp.Where(s => s.sex==true);
+                
+            }
+            else if (gender == "Female")
+            {
+
+                userstemp = userstemp.Where(s => s.sex == false);
+
+            }
+            
+
+            if (searchString != null)
+            {
+                
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+            ViewBag.CurrentFilter = searchString;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                userstemp = userstemp.Where(s => s.vanhoa.ToLower().Contains(searchString.ToLower()));
+            }
+
+
+            if (searchString1 != null)
+            {
+
+            }
+            else
+            {
+                searchString1 = currentFilter1;
+            }
+            ViewBag.CurrentFilter1 = searchString1;
+
+            if (!String.IsNullOrEmpty(searchString1))
+            {
+                userstemp = userstemp.Where(s => s.vanhoa.ToLower().Contains(searchString1.ToLower()));
+            }
+
+
+            if (searchString2 != null)
+            {
+
+            }
+            else
+            {
+                searchString2 = currentFilter2;
+            }
+            ViewBag.CurrentFilter2 = searchString2;
+
+            if (!String.IsNullOrEmpty(searchString2))
+            {
+                userstemp = userstemp.Where(s => (DateTime.Now.Year - s.DOB.Value.Year)>=int.Parse(searchString2));
+            }
+
+
+            if (searchString3 != null)
+            {
+
+            }
+            else
+            {
+                searchString3 = currentFilter3;
+            }
+            ViewBag.CurrentFilter3 = searchString3;
+
+            if (!String.IsNullOrEmpty(searchString3))
+            {
+                userstemp = userstemp.Where(s => (DateTime.Now.Year - s.DOB.Value.Year) <= int.Parse(searchString3));
+            }
+
+
+            users = userstemp.ToList();
+            return View(users);
 
             
         }
@@ -96,6 +178,12 @@ namespace qlcdvien.Controllers
                 users.Add(iMapper.Map<ApplicationUser, User>(item));
             }
             return View(users);
+        }
+
+        public ActionResult AIndex()
+        {
+          
+            return View(UserManager.Users.ToList());
         }
 
         // GET: Users/Details/5

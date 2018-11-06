@@ -211,9 +211,11 @@
     <Compile Include="Controllers\HoatdongCongdoansController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\KhenthuongsController.cs" />
+    <Compile Include="Controllers\KhenthuongtapthesController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\TreeNode.cs" />
     <Compile Include="Controllers\UsersController.cs" />
+    <Compile Include="Controllers\YkiensController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -237,11 +239,29 @@
     <Compile Include="Migrations\201811040406376_add_namephancap.Designer.cs">
       <DependentUpon>201811040406376_add_namephancap.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201811060320039_khenthuong_khenthuongcanhan.cs" />
+    <Compile Include="Migrations\201811060320039_khenthuong_khenthuongcanhan.Designer.cs">
+      <DependentUpon>201811060320039_khenthuong_khenthuongcanhan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811060322268_del_doituongkhenthuong.cs" />
+    <Compile Include="Migrations\201811060322268_del_doituongkhenthuong.Designer.cs">
+      <DependentUpon>201811060322268_del_doituongkhenthuong.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811060337556_addtable_khenthuongtapthe.cs" />
+    <Compile Include="Migrations\201811060337556_addtable_khenthuongtapthe.Designer.cs">
+      <DependentUpon>201811060337556_addtable_khenthuongtapthe.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811060514012_addtable_ykien.cs" />
+    <Compile Include="Migrations\201811060514012_addtable_ykien.Designer.cs">
+      <DependentUpon>201811060514012_addtable_ykien.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CapCongDoan.cs" />
+    <Compile Include="Models\Ykien.cs" />
     <Compile Include="Models\HoatdongCongdoan.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Khenthuongtapthe.cs" />
     <Compile Include="Models\Khenthuong.cs" />
     <Compile Include="Models\Log.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -536,11 +556,6 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\AspNetUsers\Create.cshtml" />
-    <Content Include="Views\AspNetUsers\Delete.cshtml" />
-    <Content Include="Views\AspNetUsers\Details.cshtml" />
-    <Content Include="Views\AspNetUsers\Edit.cshtml" />
-    <Content Include="Views\AspNetUsers\Index.cshtml" />
     <Content Include="Views\HoatdongCongdoans\Create.cshtml" />
     <Content Include="Views\HoatdongCongdoans\Delete.cshtml" />
     <Content Include="Views\HoatdongCongdoans\Details.cshtml" />
@@ -553,7 +568,6 @@
     <Content Include="Views\CapCongDoans\Index.cshtml" />
     <Content Include="Views\CapCongDoans\Treeview.cshtml" />
     <Content Include="Views\CapCongDoans\IndexTreeViewWithPersonList.cshtml" />
-    <Content Include="Views\AspNetUsers\Index1.cshtml" />
     <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
     <Content Include="Views\Users\Create.cshtml" />
     <Content Include="Views\Users\Delete.cshtml" />
@@ -567,6 +581,23 @@
     <Content Include="Views\Khenthuongs\Details.cshtml" />
     <Content Include="Views\Khenthuongs\Edit.cshtml" />
     <Content Include="Views\Khenthuongs\Index.cshtml" />
+    <Content Include="Views\Khenthuongtapthes\Create.cshtml" />
+    <Content Include="Views\Khenthuongtapthes\Delete.cshtml" />
+    <Content Include="Views\Khenthuongtapthes\Details.cshtml" />
+    <Content Include="Views\Khenthuongtapthes\Edit.cshtml" />
+    <Content Include="Views\Khenthuongtapthes\Index.cshtml" />
+    <Content Include="Views\HoatdongCongdoans\Baichoduyet.cshtml" />
+    <Content Include="Views\Ykiens\Create.cshtml" />
+    <Content Include="Views\Ykiens\Delete.cshtml" />
+    <Content Include="Views\Ykiens\Details.cshtml" />
+    <Content Include="Views\Ykiens\Edit.cshtml" />
+    <Content Include="Views\Ykiens\Index.cshtml" />
+    <Content Include="Views\Ykiens\Doixuly.cshtml" />
+    <Content Include="Views\Users\ACreate.cshtml" />
+    <Content Include="Views\Users\ADelete.cshtml" />
+    <Content Include="Views\Users\ADetails.cshtml" />
+    <Content Include="Views\Users\AEdit.cshtml" />
+    <Content Include="Views\Users\AIndex.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -601,6 +632,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201811040406376_add_namephancap.resx">
       <DependentUpon>201811040406376_add_namephancap.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811060320039_khenthuong_khenthuongcanhan.resx">
+      <DependentUpon>201811060320039_khenthuong_khenthuongcanhan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811060322268_del_doituongkhenthuong.resx">
+      <DependentUpon>201811060322268_del_doituongkhenthuong.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811060337556_addtable_khenthuongtapthe.resx">
+      <DependentUpon>201811060337556_addtable_khenthuongtapthe.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811060514012_addtable_ykien.resx">
+      <DependentUpon>201811060514012_addtable_ykien.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

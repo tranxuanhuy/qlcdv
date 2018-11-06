@@ -35,7 +35,7 @@
             <div class="wysiwyg-editor" id="editor1"></div>
             @Html.HiddenFor(model => model.NoiDung)
 
-            <button id="btnSave" type="submit" class="btn btn-default">Save</button>
+
             @Html.ValidationMessageFor(model => model.NoiDung, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -66,9 +66,11 @@
                 @Html.EditorFor(model => model.daDuyet)
                 @Html.ValidationMessageFor(model => model.daDuyet, "", new { @class = "text-danger" })
             </div>
+            <button id="btnSave" type="submit" class="btn btn-default">Save</button>
         </div>
+        
     </div>
-
+    
     @*<div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Save" class="btn btn-default" />

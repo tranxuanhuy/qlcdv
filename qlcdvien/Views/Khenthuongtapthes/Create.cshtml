@@ -1,24 +1,21 @@
-﻿@model qlcdvien.Models.Khenthuong
+﻿@model qlcdvien.Models.Khenthuongtapthe
 
 @{
-    
-ViewBag.Title = "Edit";
-Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Edit</h2>
+<h2>Create</h2>
 
-@using (Html.BeginForm("Edit", "Khenthuongs", FormMethod.Post,
+@using (Html.BeginForm("Create", "Khenthuongtapthes", FormMethod.Post,
                             new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>Khenthuong</h4>
+        <h4>Khenthuongtapthe</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.Khenthuong_id)
-
         <div class="form-group">
             @Html.LabelFor(model => model.ngaykhenthuong, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -52,37 +49,24 @@ Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.cdv_id, "cdv_id", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("cdv_id", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.cdv_id, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        @*<div class="form-group">
             @Html.LabelFor(model => model.tochuc_id, "tochuc_id", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("tochuc_id", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.tochuc_id, "", new { @class = "text-danger" })
             </div>
-        </div>*@
+        </div>
 
         <div class="form-group">
-            @Html.Hidden("oldurl", @Model.scanurl)
             @Html.LabelFor(model => model.scanurl, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <a href="/Khenthuongs/DownloadFile?file=@Model.scanurl">Download</a>
                 <input type="file" name="uploadImage" class="input-files" />
-                @*@Html.EditorFor(model => model.scanurl, new { htmlAttributes = new { @class = "form-control" } })*@
                 @Html.ValidationMessageFor(model => model.scanurl, "", new { @class = "text-danger" })
             </div>
         </div>
 
-     
-
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Create" class="btn btn-default" />
             </div>
         </div>
     </div>

@@ -16,42 +16,9 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<!-- Đoạn cần thêm -->
-@using (Html.BeginForm())
-{
-<div class="form-horizontal">
 
-    <label for="id-date-range-picker-1">Date Range Picker</label>
-
-    <div class="row">
-        <div class="col-xs-8 col-sm-4">
-            <div class="input-group">
-                <span class="input-group-addon">
-                    <i class="fa fa-calendar bigger-110"></i>
-                </span>
-
-
-
-
-                <input class="form-control" type="text" name="date-range-picker" id="id-date-range-picker-1" value="@ViewBag.DateFilter" />
-
-            </div>
-
-            Find by content:
-            <br />
-            @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
-            <button class="btn btn-info" type="submit">
-                <i class="ace-icon fa fa-check bigger-110"></i>
-                Submit
-            </button>
-        </div>
-    </div>
-    
-
-</div>
-}
 Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
-@Html.PagedListPager(Model, page => Url.Action("Index",
+@Html.PagedListPager(Model, page => Url.Action("Baichoduyet",
     new { page, sortOrder = ViewBag.CurrentSort, dateFilter = ViewBag.DateFilter, currentFilter = ViewBag.CurrentFilter }))
 <!-- Kết thúc -->
 <table class="table" >
@@ -88,7 +55,7 @@ Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.Page
 Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
 
 
-@Html.PagedListPager(Model, page => Url.Action("Index",
+@Html.PagedListPager(Model, page => Url.Action("Baichoduyet",
     new { page, sortOrder = ViewBag.CurrentSort, dateFilter = ViewBag.DateFilter, currentFilter = ViewBag.CurrentFilter }))
 @section Scripts {
     <!-- basic scripts -->
@@ -179,7 +146,14 @@ Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.Page
                 $('.limiterBox,.autosizejs').remove();
                 $('.daterangepicker.dropdown-menu,.colorpicker.dropdown-menu,.bootstrap-datetimepicker-widget.dropdown-menu').remove();
             });
-           
+            $("#exportbtn").click(function () {
+                $(".table").table2excel({
+                    // exclude CSS class
+                    exclude: ".noExl",
+                    name: "Worksheet Name",
+                    filename: "SomeFile" //do not include extension
+                });
+            });
         });
     </script>
 }

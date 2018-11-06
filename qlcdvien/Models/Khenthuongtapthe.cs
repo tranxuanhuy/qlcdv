@@ -7,8 +7,8 @@
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("Khenthuong")]
-    public partial class Khenthuong
+    [Table("Khenthuongtapthe")]
+    public partial class Khenthuongtapthe
     {
         [Key]
         public int Khenthuong_id { get; set; }
@@ -26,18 +26,16 @@
         [DisplayName("Cấp khen thưởng")]
         public string capkhenthuong { get; set; }
 
-        [StringLength(128)]
-        public string cdv_id { get; set; }
 
-        //public int? tochuc_id { get; set; }
+        public int? tochuc_id { get; set; }
 
         [DisplayName("Bản scan")]
         public string scanurl { get; set; }
 
-       
 
-        public virtual ApplicationUser ApplicationUser { get; set; }
 
-        //public virtual CapCongDoan CapCongDoan { get; set; }
+
+
+        public virtual CapCongDoan CapCongDoan { get; set; }
     }
 }

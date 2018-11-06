@@ -14,7 +14,7 @@
         public CapCongDoan()
         {
             ApplicationUsers = new HashSet<ApplicationUser>();
-            Khenthuongs = new HashSet<Khenthuong>();
+            Khenthuongtapthes = new HashSet<Khenthuongtapthe>();
         }
 
         [Key]
@@ -32,6 +32,6 @@
         public virtual ICollection<ApplicationUser> ApplicationUsers { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Khenthuong> Khenthuongs { get; set; }
+        public virtual ICollection<Khenthuongtapthe> Khenthuongtapthes { get; set; }
     }
 }

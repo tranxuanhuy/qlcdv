@@ -15,7 +15,18 @@ namespace qlcdvien.Controllers
     public class HoatdongCongdoansController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
+        // GET: HoatdongCongdoans
+        public ActionResult Baichoduyet(int? page)
+        {
+    
 
+            var hoatdongCongdoans = db.HoatdongCongdoans.Where(s => s.daDuyet != true).Include(i => i.ApplicationUser);
+         
+            //return View(hoatdongCongdoans.OrderByDescending(x=>x.ngaydang).ToList());
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            return View(hoatdongCongdoans.OrderByDescending(x => x.ngaydang).ToPagedList(pageNumber, pageSize));
+        }
         // GET: HoatdongCongdoans
         public ActionResult Index(string daterangepicker, int? page, string dateFilter, string searchString, string currentFilter)
         {
@@ -40,7 +51,7 @@ namespace qlcdvien.Controllers
             }
             ViewBag.CurrentFilter = searchString;
 
-            var hoatdongCongdoans = db.HoatdongCongdoans.Include(i => i.ApplicationUser);
+            var hoatdongCongdoans = db.HoatdongCongdoans.Where(s=>s.daDuyet==true).Include(i => i.ApplicationUser);
             if (!String.IsNullOrEmpty(daterangepicker)) // kiểm tra chuỗi tìm kiếm có rỗng/null hay không
             {
                 DateTime d1 = DateTime.ParseExact(daterangepicker.Split(' ').First(), "MM/dd/yyyy", null);
@@ -97,6 +108,7 @@ namespace qlcdvien.Controllers
 
                 hoatdongCongdoan.nguoidang_id = System.Web.HttpContext.Current.User.Identity.GetUserId();
                 hoatdongCongdoan.ngaydang = DateTime.Now;
+                hoatdongCongdoan.daDuyet = false;
                 db.HoatdongCongdoans.Add(hoatdongCongdoan);
                 db.SaveChanges();
                 return RedirectToAction("Index");
