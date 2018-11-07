@@ -18,6 +18,7 @@ namespace qlcdvien.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        
 
         public UsersController()
         {
@@ -52,6 +53,103 @@ namespace qlcdvien.Controllers
                 _userManager = value;
             }
         }
+
+        public ActionResult AIndex()
+        {
+            var aspNetUsers = UserManager.Users.Include(a => a.CapCongDoan);
+            return View(aspNetUsers.ToList());
+        }
+
+        // GET: AspNetUsers/Details/5
+        public ActionResult ADetails(string id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            ApplicationUser aspNetUser = UserManager.FindById(id);
+            if (aspNetUser == null)
+            {
+                return HttpNotFound();
+            }
+            return View(aspNetUser);
+        }
+
+       
+
+        // GET: AspNetUsers/Edit/5
+        public ActionResult AEdit(string id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            ApplicationUser aspNetUser = UserManager.FindById(id);
+            if (aspNetUser == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.capcongdoan_id = new SelectList(new ApplicationDbContext().CapCongDoans, "Capcongdoan_id", "name", aspNetUser.capcongdoan_id);
+            return View(aspNetUser);
+        }
+
+        // POST: AspNetUsers/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AEdit([Bind(Include = "Id,Email,EmailConfirmed,PasswordHash,SecurityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName,name,DOB,sex,noisinh,quequan,HKTT,tamtru,chucvuChinhquyen,chucvuDoanthe,vanhoa,chuyenmon,hocvi,hocham,tinhoc,ngoaingu,imageurl,tongiao,dantoc,cmnd,noicapcmnd,ngaycapcmnd,truongcongdoanbophan,truonglopdaotao,nangkhieu,hanche,capcongdoan_id")] ApplicationUser aspNetUser)
+        {
+            if (ModelState.IsValid)
+            {
+                ApplicationUser originUser = UserManager.FindById(aspNetUser.Id);
+
+                originUser.Email = aspNetUser.Email;
+                originUser.EmailConfirmed = aspNetUser.EmailConfirmed;
+                originUser.PasswordHash = aspNetUser.PasswordHash;
+                originUser.SecurityStamp = aspNetUser.SecurityStamp;
+                originUser.PhoneNumber = aspNetUser.PhoneNumber;
+                originUser.PhoneNumberConfirmed = aspNetUser.PhoneNumberConfirmed;
+                originUser.TwoFactorEnabled = aspNetUser.TwoFactorEnabled;
+                originUser.LockoutEndDateUtc = aspNetUser.LockoutEndDateUtc;
+                originUser.LockoutEnabled = aspNetUser.LockoutEnabled;
+                originUser.AccessFailedCount = aspNetUser.AccessFailedCount;
+                originUser.UserName = aspNetUser.UserName;
+                originUser.name = aspNetUser.name;
+                originUser.DOB = aspNetUser.DOB;
+                originUser.sex = aspNetUser.sex;
+                originUser.noisinh = aspNetUser.noisinh;
+                originUser.quequan = aspNetUser.quequan;
+                originUser.HKTT = aspNetUser.HKTT;
+                originUser.tamtru = aspNetUser.tamtru;
+                originUser.chucvuChinhquyen = aspNetUser.chucvuChinhquyen;
+                originUser.chucvuDoanthe = aspNetUser.chucvuDoanthe;
+                originUser.vanhoa = aspNetUser.vanhoa;
+                originUser.chuyenmon = aspNetUser.chuyenmon;
+                originUser.hocvi = aspNetUser.hocvi;
+                originUser.hocham = aspNetUser.hocham;
+                originUser.tinhoc = aspNetUser.tinhoc;
+                originUser.ngoaingu = aspNetUser.ngoaingu;
+                originUser.imageurl = aspNetUser.imageurl;
+                originUser.tongiao = aspNetUser.tongiao;
+                originUser.dantoc = aspNetUser.dantoc;
+                originUser.cmnd = aspNetUser.cmnd;
+                originUser.noicapcmnd = aspNetUser.noicapcmnd;
+                originUser.ngaycapcmnd = aspNetUser.ngaycapcmnd;
+                originUser.truongcongdoanbophan = aspNetUser.truongcongdoanbophan;
+                originUser.truonglopdaotao = aspNetUser.truonglopdaotao;
+                originUser.nangkhieu = aspNetUser.nangkhieu;
+                originUser.hanche = aspNetUser.hanche;
+                originUser.capcongdoan_id = aspNetUser.capcongdoan_id;
+
+
+                UserManager.Update(originUser);
+                return RedirectToAction("AIndex");
+            }
+            ViewBag.capcongdoan_id = new SelectList(new ApplicationDbContext().CapCongDoans, "Capcongdoan_id", "name", aspNetUser.capcongdoan_id);
+            return View(aspNetUser);
+        }
+
         public ActionResult Index1(string listItem,string gender, string searchString, string currentFilter, string searchString1, string currentFilter1,
             string searchString2, string currentFilter2,
             string searchString3, string currentFilter3)
@@ -180,11 +278,7 @@ namespace qlcdvien.Controllers
             return View(users);
         }
 
-        public ActionResult AIndex()
-        {
-          
-            return View(UserManager.Users.ToList());
-        }
+       
 
         // GET: Users/Details/5
         public ActionResult Details(string id)
