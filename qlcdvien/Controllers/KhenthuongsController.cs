@@ -12,6 +12,7 @@ using qlcdvien.Models;
 
 namespace qlcdvien.Controllers
 {
+    [Authorize]
     public class KhenthuongsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

@@ -13,6 +13,7 @@ using qlcdvien.Models;
 
 namespace qlcdvien.Controllers
 {
+    [Authorize]
     public class CapCongDoansController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -139,6 +140,7 @@ namespace qlcdvien.Controllers
         }
 
         // GET: CapCongDoans/Create
+        [Authorize(Roles = "admin")]
         public ActionResult Create()
         {
             var categories = from c in db.CapCongDoans select c;
@@ -166,6 +168,7 @@ namespace qlcdvien.Controllers
         }
 
         // GET: CapCongDoans/Edit/5
+        [Authorize(Roles = "admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -197,6 +200,7 @@ namespace qlcdvien.Controllers
         }
 
         // GET: CapCongDoans/Delete/5
+        [Authorize(Roles = "admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)

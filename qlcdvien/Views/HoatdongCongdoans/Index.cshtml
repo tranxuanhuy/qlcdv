@@ -70,10 +70,16 @@ Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.Page
                 @Html.DisplayFor(modelItem => item.ngaydang)
                 @Html.DisplayFor(modelItem => item.ApplicationUser.name)
 
-                <br />
-                @Html.ActionLink("Edit", "Edit", new { id = item.Hoatdong_Id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.Hoatdong_Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Hoatdong_Id })
+                @if (!this.User.IsInRole("user"))
+                {
+                    <br />
+                    <span>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Hoatdong_Id })
+                    </span>
+                        <span> @Html.ActionLink("Details", "Details", new { id = item.Hoatdong_Id }) </span>
+                        <span> @Html.ActionLink("Delete", "Delete", new { id = item.Hoatdong_Id })</span>     
+                    }
+
             </td>
 
 

@@ -14,20 +14,22 @@ using qlcdvien.Models;
 
 namespace qlcdvien.Controllers
 {
+    [Authorize]
     public class UsersController : Controller
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
-        
+        private ApplicationRoleManager _roleManager;
 
         public UsersController()
         {
         }
 
-        public UsersController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
+        public UsersController(ApplicationUserManager userManager, ApplicationSignInManager signInManager, ApplicationRoleManager roleManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
+            RoleManager = roleManager;
         }
 
         public ApplicationSignInManager SignInManager
@@ -54,12 +56,25 @@ namespace qlcdvien.Controllers
             }
         }
 
+        public ApplicationRoleManager RoleManager
+        {
+            get
+            {
+                return _roleManager ?? HttpContext.GetOwinContext().Get<ApplicationRoleManager>();
+            }
+            private set
+            {
+                _roleManager = value;
+            }
+        }
+        [Authorize(Roles = "admin")]
         public ActionResult AIndex()
         {
             var aspNetUsers = UserManager.Users.Include(a => a.CapCongDoan);
             return View(aspNetUsers.ToList());
         }
 
+        [Authorize(Roles = "admin")]
         // GET: AspNetUsers/Details/5
         public ActionResult ADetails(string id)
         {
@@ -75,8 +90,8 @@ namespace qlcdvien.Controllers
             return View(aspNetUser);
         }
 
-       
 
+        [Authorize(Roles = "admin")]
         // GET: AspNetUsers/Edit/5
         public ActionResult AEdit(string id)
         {
@@ -90,15 +105,25 @@ namespace qlcdvien.Controllers
                 return HttpNotFound();
             }
             ViewBag.capcongdoan_id = new SelectList(new ApplicationDbContext().CapCongDoans, "Capcongdoan_id", "name", aspNetUser.capcongdoan_id);
+
+            List<SelectListItem> list = new List<SelectListItem>();
+            foreach (var role in RoleManager.Roles)
+            {
+                list.Add(new SelectListItem() { Value = role.Name, Text = role.Name });
+
+            }
+            ViewBag.Roles = list;
+
             return View(aspNetUser);
         }
 
+        [Authorize(Roles = "admin")]
         // POST: AspNetUsers/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AEdit([Bind(Include = "Id,Email,EmailConfirmed,PasswordHash,SecurityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName,name,DOB,sex,noisinh,quequan,HKTT,tamtru,chucvuChinhquyen,chucvuDoanthe,vanhoa,chuyenmon,hocvi,hocham,tinhoc,ngoaingu,imageurl,tongiao,dantoc,cmnd,noicapcmnd,ngaycapcmnd,truongcongdoanbophan,truonglopdaotao,nangkhieu,hanche,capcongdoan_id")] ApplicationUser aspNetUser)
+        public ActionResult AEdit([Bind(Include = "Id,Email,EmailConfirmed,PasswordHash,SecurityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName,name,DOB,sex,noisinh,quequan,HKTT,tamtru,chucvuChinhquyen,chucvuDoanthe,vanhoa,chuyenmon,hocvi,hocham,tinhoc,ngoaingu,imageurl,tongiao,dantoc,cmnd,noicapcmnd,ngaycapcmnd,truongcongdoanbophan,truonglopdaotao,nangkhieu,hanche,capcongdoan_id")] ApplicationUser aspNetUser,string roles,string pass="")
         {
             if (ModelState.IsValid)
             {
@@ -142,6 +167,16 @@ namespace qlcdvien.Controllers
                 originUser.hanche = aspNetUser.hanche;
                 originUser.capcongdoan_id = aspNetUser.capcongdoan_id;
 
+                var roleid = originUser.Roles.FirstOrDefault().RoleId;
+                UserManager.RemoveFromRole(aspNetUser.Id, new ApplicationDbContext().Roles.Find(roleid).Name);
+                UserManager.AddToRole(aspNetUser.Id, roles);
+
+                if (!String.IsNullOrEmpty(pass))
+                {
+                    UserManager.RemovePassword(aspNetUser.Id);
+
+                    UserManager.AddPassword(aspNetUser.Id, "12QWaszx!@"); 
+                }
 
                 UserManager.Update(originUser);
                 return RedirectToAction("AIndex");
@@ -150,7 +185,7 @@ namespace qlcdvien.Controllers
             return View(aspNetUser);
         }
 
-        public ActionResult Index1(string listItem,string gender, string searchString, string currentFilter, string searchString1, string currentFilter1,
+        public ActionResult Index(string listItem,string gender, string searchString, string currentFilter, string searchString1, string currentFilter1,
             string searchString2, string currentFilter2,
             string searchString3, string currentFilter3)
         {
@@ -261,7 +296,7 @@ namespace qlcdvien.Controllers
             
         }
         // GET: Users
-        public ActionResult Index()
+        public ActionResult Index2()
         {
             List<User> users = new List<User>();
             var config = new MapperConfiguration(cfg => {
@@ -349,14 +384,27 @@ namespace qlcdvien.Controllers
         //    return View(user);
         //}
 
+
         // GET: Users/Edit/5
         public ActionResult Edit(string id)
         {
+           
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
+            var loggedInUser = System.Web.HttpContext.Current.User.Identity.GetUserId();
+
+            if (id != loggedInUser && User.IsInRole("user"))
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
+            }
+            if (id != loggedInUser && User.IsInRole("mod"))
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
+            }
 
             var config = new MapperConfiguration(cfg => {
 
@@ -456,6 +504,7 @@ namespace qlcdvien.Controllers
             return View(model);
         }
 
+        [Authorize(Roles = "admin")]
         // GET: Users/Delete/5
         public ActionResult Delete(string id)
         {

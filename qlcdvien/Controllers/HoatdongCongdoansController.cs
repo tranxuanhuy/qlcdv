@@ -12,10 +12,12 @@ using qlcdvien.Models;
 using PagedList;
 namespace qlcdvien.Controllers
 {
+    [Authorize]
     public class HoatdongCongdoansController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
         // GET: HoatdongCongdoans
+        [Authorize(Roles = "admin,mod")]
         public ActionResult Baichoduyet(int? page)
         {
     
@@ -108,7 +110,12 @@ namespace qlcdvien.Controllers
 
                 hoatdongCongdoan.nguoidang_id = System.Web.HttpContext.Current.User.Identity.GetUserId();
                 hoatdongCongdoan.ngaydang = DateTime.Now;
-                hoatdongCongdoan.daDuyet = false;
+
+                if(User.IsInRole("user"))
+                    hoatdongCongdoan.daDuyet = false;
+                else
+                    hoatdongCongdoan.daDuyet = true;
+
                 db.HoatdongCongdoans.Add(hoatdongCongdoan);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -118,18 +125,31 @@ namespace qlcdvien.Controllers
             return View(hoatdongCongdoan);
         }
 
+        [Authorize(Roles = "admin,mod")]
         // GET: HoatdongCongdoans/Edit/5
         public ActionResult Edit(int? id)
         {
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             HoatdongCongdoan hoatdongCongdoan = db.HoatdongCongdoans.Include(i => i.ApplicationUser).SingleOrDefault(x => x.Hoatdong_Id == id);
             if (hoatdongCongdoan == null)
             {
                 return HttpNotFound();
             }
+
+            //phan quyen mod cap tren tro len co quyen
+            var loggedInUser = System.Web.HttpContext.Current.User.Identity.GetUserId();
+
+            if (!db.CapCongDoans.Find(db.Users.Find(db.HoatdongCongdoans.Find(id).nguoidang_id).capcongdoan_id).motaphancap.Contains(  db.Users.Include(x=>x.CapCongDoan).SingleOrDefault(x=>x.Id==loggedInUser).CapCongDoan.motaphancap))
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
+            }
+
+
             ViewBag.nguoidang_id = new SelectList(db.Users.ToList(), "Id", "name", hoatdongCongdoan.ApplicationUser.Id);
             return View(hoatdongCongdoan);
         }
@@ -156,6 +176,7 @@ namespace qlcdvien.Controllers
             return View(hoatdongCongdoan);
         }
 
+        [Authorize(Roles = "admin,mod")]
         // GET: HoatdongCongdoans/Delete/5
         public ActionResult Delete(int? id)
         {
@@ -168,6 +189,15 @@ namespace qlcdvien.Controllers
             {
                 return HttpNotFound();
             }
+
+            //phan quyen mod cap tren tro len co quyen
+            var loggedInUser = System.Web.HttpContext.Current.User.Identity.GetUserId();
+
+            if (!db.CapCongDoans.Find(db.Users.Find(db.HoatdongCongdoans.Find(id).nguoidang_id).capcongdoan_id).motaphancap.Contains(db.Users.Include(x => x.CapCongDoan).SingleOrDefault(x => x.Id == loggedInUser).CapCongDoan.motaphancap))
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
+            }
+
             return View(hoatdongCongdoan);
         }
 

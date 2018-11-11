@@ -124,130 +124,136 @@
             <th>
                 @Html.DisplayNameFor(model => model.UserName)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Roles)
+            </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CapCongDoan.name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DOB)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.sex)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.noisinh)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.quequan)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.HKTT)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.tamtru)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.chucvuChinhquyen)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.chucvuDoanthe)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.vanhoa)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.chuyenmon)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.hocvi)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.hocham)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.tinhoc)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ngoaingu)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.imageurl)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.tongiao)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.dantoc)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.cmnd)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.noicapcmnd)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ngaycapcmnd)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.truongcongdoanbophan)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.truonglopdaotao)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.nangkhieu)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.hanche)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Email)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.EmailConfirmed)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PasswordHash)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.SecurityStamp)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PhoneNumber)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PhoneNumberConfirmed)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.TwoFactorEnabled)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.LockoutEndDateUtc)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.LockoutEnabled)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.AccessFailedCount)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.UserName)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "AEdit", new { id = item.Id }) |
-                    @Html.ActionLink("Details", "ADetails", new { id = item.Id }) |
-                    @*@Html.ActionLink("Delete", "Delete", new { id = item.Id })*@
-                </td>
-            </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CapCongDoan.name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DOB)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.sex)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.noisinh)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.quequan)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HKTT)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tamtru)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.chucvuChinhquyen)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.chucvuDoanthe)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.vanhoa)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.chuyenmon)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.hocvi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.hocham)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tinhoc)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ngoaingu)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.imageurl)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tongiao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.dantoc)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.cmnd)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.noicapcmnd)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ngaycapcmnd)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.truongcongdoanbophan)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.truonglopdaotao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nangkhieu)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.hanche)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmailConfirmed)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PasswordHash)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SecurityStamp)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhoneNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhoneNumberConfirmed)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TwoFactorEnabled)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LockoutEndDateUtc)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LockoutEnabled)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AccessFailedCount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Roles.FirstOrDefault().RoleId)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "AEdit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "ADetails", new { id = item.Id }) |
+                @*@Html.ActionLink("Delete", "Delete", new { id = item.Id })*@
+            </td>
+        </tr>
         }
     </tbody>
 </table>
