@@ -1,5 +1,8 @@
 ﻿@model qlcdvien.Models.User
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 
+}
 @{
     ViewBag.Title = "Edit";
 }
@@ -10,7 +13,7 @@
                             new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>User</h4>
         <hr />

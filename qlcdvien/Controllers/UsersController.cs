@@ -107,12 +107,19 @@ namespace qlcdvien.Controllers
             ViewBag.capcongdoan_id = new SelectList(new ApplicationDbContext().CapCongDoans, "Capcongdoan_id", "name", aspNetUser.capcongdoan_id);
 
             List<SelectListItem> list = new List<SelectListItem>();
+            int i = 1;
+            string temp="";
             foreach (var role in RoleManager.Roles)
             {
-                list.Add(new SelectListItem() { Value = role.Name, Text = role.Name });
+                SelectListItem sli = new SelectListItem() { Value = role.Name, Text = role.Name };
 
+                if (i.ToString() == aspNetUser.Roles.FirstOrDefault().RoleId)
+                    temp = role.Name;
+                i++;
+                list.Add(sli);
             }
-            ViewBag.Roles = list;
+            ViewBag.roles = new SelectList(list, "Value", "Text", temp);
+            
 
             return View(aspNetUser);
         }

@@ -57,7 +57,7 @@ Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.Page
 
 @Html.PagedListPager(Model, page => Url.Action("Baichoduyet",
     new { page, sortOrder = ViewBag.CurrentSort, dateFilter = ViewBag.DateFilter, currentFilter = ViewBag.CurrentFilter }))
-@section Scripts {
+@*@section Scripts {
     <!-- basic scripts -->
     <!--[if !IE]> -->
     <script src="~/Content/ace-master/assets/js/jquery.2.1.1.min.js"></script>
@@ -156,7 +156,7 @@ Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.Page
             });
         });
     </script>
-}
+}*@
 @section scriptsHeader {
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta charset="utf-8" />

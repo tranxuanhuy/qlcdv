@@ -11,7 +11,7 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Hoạt động công đoàn</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -26,9 +26,9 @@
     <div class="row">
         <div class="col-xs-8 col-sm-4">
             <div class="input-group">
-                <span class="input-group-addon">
+                @*<span class="input-group-addon">
                     <i class="fa fa-calendar bigger-110"></i>
-                </span>
+                </span>*@
 
 
 
@@ -97,29 +97,7 @@ Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.Page
 @Html.PagedListPager(Model, page => Url.Action("Index",
     new { page, sortOrder = ViewBag.CurrentSort, dateFilter = ViewBag.DateFilter, currentFilter = ViewBag.CurrentFilter }))
 @section Scripts {
-    <!-- basic scripts -->
-    <!--[if !IE]> -->
-    <script src="~/Content/ace-master/assets/js/jquery.2.1.1.min.js"></script>
 
-    <!-- <![endif]-->
-    <!--[if IE]>
-    <script src="~/Content/ace-master/assets/js/jquery.1.11.1.min.js"></script>
-    <![endif]-->
-    <!--[if !IE]> -->
-    <script type="text/javascript">
-        window.jQuery || document.write("<script src='assets/js/jquery.min.js'>" + "<" + "/script>");
-    </script>
-
-    <!-- <![endif]-->
-    <!--[if IE]>
-    <script type="text/javascript">
-     window.jQuery || document.write("<script src='assets/js/jquery1x.min.js'>"+"<"+"/script>");
-    </script>
-    <![endif]-->
-    <script type="text/javascript">
-        if ('ontouchstart' in document.documentElement) document.write("<script src='assets/js/jquery.mobile.custom.min.js'>" + "<" + "/script>");
-    </script>
-    <script src="~/Content/ace-master/assets/js/bootstrap.min.js"></script>
 
     <!-- page specific plugin scripts -->
     <!--[if lte IE 8]>

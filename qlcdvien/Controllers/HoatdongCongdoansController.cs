@@ -144,7 +144,7 @@ namespace qlcdvien.Controllers
             //phan quyen mod cap tren tro len co quyen
             var loggedInUser = System.Web.HttpContext.Current.User.Identity.GetUserId();
 
-            if (!db.CapCongDoans.Find(db.Users.Find(db.HoatdongCongdoans.Find(id).nguoidang_id).capcongdoan_id).motaphancap.Contains(  db.Users.Include(x=>x.CapCongDoan).SingleOrDefault(x=>x.Id==loggedInUser).CapCongDoan.motaphancap))
+            if ((!db.CapCongDoans.Find(db.Users.Find(db.HoatdongCongdoans.Find(id).nguoidang_id).capcongdoan_id).motaphancap.Contains(  db.Users.Include(x=>x.CapCongDoan).SingleOrDefault(x=>x.Id==loggedInUser).CapCongDoan.motaphancap)&& User.IsInRole("mod")))
             {
                 return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
             }
@@ -193,7 +193,7 @@ namespace qlcdvien.Controllers
             //phan quyen mod cap tren tro len co quyen
             var loggedInUser = System.Web.HttpContext.Current.User.Identity.GetUserId();
 
-            if (!db.CapCongDoans.Find(db.Users.Find(db.HoatdongCongdoans.Find(id).nguoidang_id).capcongdoan_id).motaphancap.Contains(db.Users.Include(x => x.CapCongDoan).SingleOrDefault(x => x.Id == loggedInUser).CapCongDoan.motaphancap))
+            if ((!db.CapCongDoans.Find(db.Users.Find(db.HoatdongCongdoans.Find(id).nguoidang_id).capcongdoan_id).motaphancap.Contains(db.Users.Include(x => x.CapCongDoan).SingleOrDefault(x => x.Id == loggedInUser).CapCongDoan.motaphancap) && User.IsInRole("mod")))
             {
                 return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
             }
