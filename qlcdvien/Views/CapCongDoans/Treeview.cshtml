@@ -76,13 +76,13 @@
 
             $('#tree1').ace_tree({
                 dataSource: sampleData['dataSource1'],
-                multiSelect: true,
+                multiSelect: false,
                 cacheItems: true,
                 'open-icon': 'ace-icon tree-minus',
                 'close-icon': 'ace-icon tree-plus',
-                'selectable': true,
-                'selected-icon': 'ace-icon fa fa-check',
-                'unselected-icon': 'ace-icon fa fa-times',
+                'selectable': false,
+                'selected-icon': null,
+                'unselected-icon': null,
                 loadingHTML: '<div class="tree-loading"><i class="ace-icon fa fa-refresh fa-spin blue"></i></div>'
             });
 

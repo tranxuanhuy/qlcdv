@@ -82,25 +82,24 @@
     $('#example').DataTable({
         dom: 'Bfrtip',
         buttons: [{
-            extend: 'copy',
-            text: 'Copy to clipboard',
-            filename: 'Data export'
-        }, {
-            extend: 'csv',
-            text: 'Save to CSV',
-            filename: 'Data export'
-        }, {
             extend: 'excel',
             text: 'Save to Excel',
-            filename: 'Data export'
+            filename: 'Data export', exportOptions: {
+                columns: ':visible'
+            }
         }, {
             extend: 'pdf',
             text: 'Save to PDF',
-            filename: 'Data export'
+            filename: 'Data export', exportOptions: {
+                columns: ':visible'
+            }
         }, {
             extend: 'print',
             text: 'Print',
-            filename: 'Data export'
+            filename: 'Data export',
+            exportOptions: {
+                columns: ':visible'
+            }
         },]
     });
     </script>
