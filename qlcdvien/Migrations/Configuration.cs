@@ -34,17 +34,24 @@ namespace qlcdvien.Migrations
             var userManager = new UserManager<ApplicationUser>(userStore);
 
 
-            //foreach (string line in File.ReadLines("C:\\userlist.txt"))
-            //{
-            //    var user = new ApplicationUser
-            //    {
-            //        UserName = line,
-                    
-            //    };
+            foreach (string line in File.ReadLines("C:\\userlist.txt"))
+            {
+                var user = new ApplicationUser
+                {
+                    UserName = line.Split('\t')[1] + line.Split('\t')[2]+ line.Split('\t')[5].Split('/')[0],
+                    name = line.Split('\t')[0],
+                    chucvuDoanthe = line.Split('\t')[3],
+                    sex = true,
+                    DOB = DateTime.Parse(line.Split('\t')[5]),
+                    capcongdoan_id = int.Parse(line.Split('\t')[6]),
+                };
+                if (line.Split('\t')[4] != "Nam")
+                    user.sex = false;
 
-            //    userManager.Create(user, "12QWaszx!@");
-            //}
-           
+                    userManager.Create(user, "Abc@1234");
+                userManager.AddToRole(user.Id, "user");
+            }
+
         }
     }
 }
