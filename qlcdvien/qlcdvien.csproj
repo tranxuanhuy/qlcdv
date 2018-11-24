@@ -569,7 +569,7 @@
     <Content Include="Views\CapCongDoans\Index.cshtml" />
     <Content Include="Views\CapCongDoans\Treeview.cshtml" />
     <Content Include="Views\CapCongDoans\IndexTreeViewWithPersonList.cshtml" />
-    <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
+    <Content Include="Views\Shared\_LayoutUser.cshtml" />
     <Content Include="Views\Users\Create.cshtml" />
     <Content Include="Views\Users\Delete.cshtml" />
     <Content Include="Views\Users\Details.cshtml" />
@@ -599,6 +599,8 @@
     <Content Include="Views\Users\ADetails.cshtml" />
     <Content Include="Views\Users\AEdit.cshtml" />
     <Content Include="Views\Users\AIndex.cshtml" />
+    <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
+    <Content Include="Views\Shared\_LayoutMod.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

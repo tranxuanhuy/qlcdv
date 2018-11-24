@@ -4,24 +4,24 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+
 
 <div>
-    <h4>HoatdongCongdoan</h4>
-    <hr />
-    <dl class="dl-horizontal">
+    
+    
+    <dl >
 
-        <dt>
+        @*<dt>
             @Html.DisplayNameFor(model => model.Tieude)
-        </dt>
+        </dt>*@
 
         <dd>
-            @Html.DisplayFor(model => model.Tieude)
+            <h2> @Html.DisplayFor(model => model.Tieude)</h2>
         </dd>
 
-        <dt>
+        @*<dt>
             @Html.DisplayNameFor(model => model.NoiDung)
-        </dt>
+        </dt>*@
 
         <dd>
             @*@Html.DisplayFor(model => model.NoiDung)*@
@@ -29,7 +29,7 @@
         </dd>
 
 
-
+        
         <dt>
             @Html.DisplayNameFor(model => model.ApplicationUser.name)
         </dt>
@@ -45,13 +45,13 @@
             @Html.DisplayFor(model => model.ngaydang)
         </dd>
 
-        <dt>
+        @*<dt>
             @Html.DisplayNameFor(model => model.daDuyet)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.daDuyet)
-        </dd>
+        </dd>*@
 
     </dl>
 </div>

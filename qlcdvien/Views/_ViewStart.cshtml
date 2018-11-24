@@ -1,3 +1,18 @@
-﻿@{
-    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+﻿
+@{
+    //if (!this.User.Identity.IsAuthenticated)
+    {
+        if (this.User.IsInRole("admin"))
+        {
+            Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+        }
+        else if (this.User.IsInRole("mod"))
+        {
+            Layout = "~/Views/Shared/_LayoutMod.cshtml";
+        }
+        else
+        {
+            Layout = "~/Views/Shared/_LayoutUser.cshtml";
+        }
+    }
 }

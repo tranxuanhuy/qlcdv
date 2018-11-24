@@ -1,101 +1,88 @@
-﻿@model PagedList.IPagedList<qlcdvien.Models.HoatdongCongdoan>
-@using PagedList.Mvc;
-@{
-    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+﻿@model IEnumerable<qlcdvien.Models.HoatdongCongdoan>
 
-}
-<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
 @{
     /**/
 
     ViewBag.Title = "Index";
 }
 
-<h2>Hoạt động công đoàn</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+
+
 <!-- Đoạn cần thêm -->
 @using (Html.BeginForm())
 {
-<div class="form-horizontal">
+    <div class="form-horizontal">
 
-    <label for="id-date-range-picker-1">Date Range Picker</label>
-
-    <div class="row">
-        <div class="col-xs-8 col-sm-4">
-            <div class="input-group">
-                @*<span class="input-group-addon">
-                    <i class="fa fa-calendar bigger-110"></i>
-                </span>*@
-
-
-
-
-                <input class="form-control" type="text" name="date-range-picker" id="id-date-range-picker-1" value="@ViewBag.DateFilter" />
-
-            </div>
-
-            Find by content:
-            <br />
-            @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
-            <button class="btn btn-info" type="submit">
-                <i class="ace-icon fa fa-check bigger-110"></i>
-                Submit
-            </button>
-        </div>
-    </div>
-    
-
-</div>
-}
-Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
-@Html.PagedListPager(Model, page => Url.Action("Index",
-    new { page, sortOrder = ViewBag.CurrentSort, dateFilter = ViewBag.DateFilter, currentFilter = ViewBag.CurrentFilter }))
-<!-- Kết thúc -->
-<table class="table" >
-
-
-    @foreach (var item in Model)
-    {
-        <tr>
-
-            <td>
-                <h2>@Html.ActionLink(item.Tieude, "Details", new { id = item.Hoatdong_Id }) </h2>
-
-                @*@Html.DisplayFor(modelItem => item.NoiDung)*@
-                @Html.Raw(item.NoiDung)
-                <br />
-                @Html.DisplayFor(modelItem => item.ngaydang)
-                @Html.DisplayFor(modelItem => item.ApplicationUser.name)
-
-                @if (!this.User.IsInRole("user"))
-                {
-                    <br />
-                    <span>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.Hoatdong_Id })
-                    </span>
-                        <span> @Html.ActionLink("Details", "Details", new { id = item.Hoatdong_Id }) </span>
-                        <span> @Html.ActionLink("Delete", "Delete", new { id = item.Hoatdong_Id })</span>     
-                    }
-
-            </td>
-
-
+        <label for="id-date-range-picker-1">Date Range Picker</label>
 
         
-        </tr>
-    }
+            
+                
+                    @*<span class="input-group-addon">
+                            <i class="fa fa-calendar bigger-110"></i>
+                        </span>*@
 
+
+
+
+                    <input type="text" name="date-range-picker" id="id-date-range-picker-1" value="@ViewBag.DateFilter" />
+
+                
+
+                Find by content:
+                
+                @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+                <button class="btn btn-info" type="submit">
+                    <i class="ace-icon fa fa-check bigger-110"></i>
+                    Submit
+                </button>
+            
+        
+
+
+    </div>
+}
+
+<!-- Kết thúc -->
+<table id="example" class="display" style="width:100%">
+    <thead><tr><th></th></tr></thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td>
+                    <h2>@Html.ActionLink(item.Tieude, "Details", new { id = item.Hoatdong_Id }) </h2>
+
+                    @*@Html.DisplayFor(modelItem => item.NoiDung)*@
+                    @Html.Raw(item.NoiDung)
+                    <br />
+                    <b>
+                        @Html.DisplayFor(modelItem => item.ngaydang)
+                        @Html.DisplayFor(modelItem => item.ApplicationUser.name)
+                    </b>
+                    @if (!this.User.IsInRole("user"))
+                    {
+                        <br />
+                        <span>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.Hoatdong_Id })
+                        </span>
+                        <span> @Html.ActionLink("Details", "Details", new { id = item.Hoatdong_Id }) </span>
+                        <span> @Html.ActionLink("Delete", "Delete", new { id = item.Hoatdong_Id })</span>
+                    }
+
+                </td>
+
+
+
+
+            </tr>
+        }
+    </tbody>
 </table>
 
-
-Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
-
-
-@Html.PagedListPager(Model, page => Url.Action("Index",
-    new { page, sortOrder = ViewBag.CurrentSort, dateFilter = ViewBag.DateFilter, currentFilter = ViewBag.CurrentFilter }))
 @section Scripts {
 
 
@@ -123,7 +110,7 @@ Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.Page
     <script src="~/Content/ace-master/assets/js/ace-elements.min.js"></script>
     <script src="~/Content/ace-master/assets/js/ace.min.js"></script>
 
-    
+
     <script src="~/Content/Export-Html-Table-To-Excel-Spreadsheet-using-jQuery-table2excel/dist/jquery.table2excel.js"></script>
     <!-- inline scripts related to this page -->
     <script type="text/javascript">
@@ -163,7 +150,49 @@ Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.Page
                 $('.limiterBox,.autosizejs').remove();
                 $('.daterangepicker.dropdown-menu,.colorpicker.dropdown-menu,.bootstrap-datetimepicker-widget.dropdown-menu').remove();
             });
-           
+
+        });
+    </script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href="https://cdn.datatables.net/buttons/1.4.2/css/buttons.dataTables.min.css" rel="stylesheet" />
+
+    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.4.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.4.2/js/buttons.flash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.4.2/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.4.2/js/buttons.print.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#example').DataTable({
+                dom: 'Bfrtip',
+                buttons: [{
+                    extend: 'copy',
+                    text: 'Copy to clipboard',
+                    filename: 'Data export'
+                }, {
+                    extend: 'csv',
+                    text: 'Save to CSV',
+                    filename: 'Data export'
+                }, {
+                    extend: 'excel',
+                    text: 'Save to Excel',
+                    filename: 'Data export'
+                }, {
+                    extend: 'pdf',
+                    text: 'Save to PDF',
+                    filename: 'Data export'
+                }, {
+                    extend: 'print',
+                    text: 'Print',
+                    filename: 'Data export'
+                },]
+            });
         });
     </script>
 }
