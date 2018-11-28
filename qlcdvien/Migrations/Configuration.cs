@@ -39,6 +39,7 @@ namespace qlcdvien.Migrations
                 var user = new ApplicationUser
                 {
                     UserName = line.Split('\t')[1] + line.Split('\t')[2]+ line.Split('\t')[5].Split('/')[0],
+                    Email = line.Split('\t')[1] + line.Split('\t')[2] + line.Split('\t')[5].Split('/')[0]+ "@mirats.vn",
                     name = line.Split('\t')[0],
                     chucvuDoanthe = line.Split('\t')[3],
                     sex = true,
