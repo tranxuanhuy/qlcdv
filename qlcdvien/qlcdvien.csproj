@@ -691,6 +691,7 @@
     <Content Include="Views\Users\AIndex.cshtml" />
     <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
     <Content Include="Views\Shared\_LayoutMod.cshtml" />
+    <Content Include="Views\Home\RestoreDatabase.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

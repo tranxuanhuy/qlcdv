@@ -2,8 +2,10 @@
 using Microsoft.SqlServer.Management.Smo;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
+using System.Web.Hosting;
 using System.Web.Mvc;
 
 namespace qlcdvien.Controllers
@@ -30,71 +32,142 @@ namespace qlcdvien.Controllers
         }
 
 
-        public void BackupDatabase(String databaseName="qlcdv", String userName = "sa",
-             String password = "1234", String serverName = "(local)", String destinationPath = "C:\\")
+
+        public ActionResult DownloadFile()
         {
-            Backup sqlBackup = new Backup();
 
-            sqlBackup.Action = BackupActionType.Database;
-            sqlBackup.BackupSetDescription = "ArchiveDataBase:" +
-                                             DateTime.Now.ToShortDateString();
-            sqlBackup.BackupSetName = "Archive";
 
-            sqlBackup.Database = databaseName;
+            string file = BackupRestore.BackupDatabase();
+            string contentType = "application/octet-stream";
+            var fileName = Path.GetFileName(file);
+            
+            return File(file, contentType, fileName);
 
-            BackupDeviceItem deviceItem = new BackupDeviceItem(destinationPath, DeviceType.File);
-            ServerConnection connection = new ServerConnection(serverName, userName, password);
-            Server sqlServer = new Server(connection);
 
-            Database db = sqlServer.Databases[databaseName];
-
-            sqlBackup.Initialize = true;
-            sqlBackup.Checksum = true;
-            sqlBackup.ContinueAfterError = true;
-
-            sqlBackup.Devices.Add(deviceItem);
-            sqlBackup.Incremental = false;
-
-            sqlBackup.ExpirationDate = DateTime.Now.AddDays(3);
-            sqlBackup.LogTruncation = BackupTruncateLogType.Truncate;
-
-            sqlBackup.FormatMedia = false;
-
-            sqlBackup.SqlBackup(sqlServer);
         }
 
-        public void RestoreDatabase(String databaseName, String filePath,
-       String serverName, String userName, String password,
-       String dataFilePath, String logFilePath)
+        
+        
+            public ActionResult RestoreDatabase()
+            {
+                return View();
+            }
+
+            [HttpPost]
+            public ActionResult Upload(HttpPostedFileBase file)
+            {
+                if (file != null && file.ContentLength > 0)
+                {
+                    var fileName = Path.GetFileName(file.FileName);
+                    //var path = Path.Combine(Server.MapPath("~/Images/Database/"), fileName);
+                    file.SaveAs(BackupRestore.Getdatabases("(local)").BackupDirectory + "\\FullBackUp.bak" );
+                BackupRestore.RestoreDatabase();
+                
+            }
+
+
+            
+            return RedirectToAction("RestoreDatabase");
+            }
+        
+
+     
+
+
+        public class BackupRestore
         {
-            Restore sqlRestore = new Restore();
+            static Server srv;
+            static ServerConnection conn;
 
-            BackupDeviceItem deviceItem = new BackupDeviceItem(filePath, DeviceType.File);
-            sqlRestore.Devices.Add(deviceItem);
-            sqlRestore.Database = databaseName;
+            public static string BackupDatabase(string serverName="(local)", string databaseName="qlcdv", string filePath= "FullBackUp.bak")
+            {
+                
 
-            ServerConnection connection = new ServerConnection(serverName, userName, password);
-            Server sqlServer = new Server(connection);
+                conn = new ServerConnection();
+                conn.ServerInstance = serverName;
+                srv = new Server(conn);
+                System.IO.File.Delete(srv.BackupDirectory + "\\FullBackUp.bak");
+                string fullPath= srv.BackupDirectory + "\\FullBackUp.bak"; 
+                try
+                {
+                    Backup bkp = new Backup();
 
-            Database db = sqlServer.Databases[databaseName];
-            sqlRestore.Action = RestoreActionType.Database;
-            String dataFileLocation = dataFilePath + databaseName + ".mdf";
-            String logFileLocation = logFilePath + databaseName + "_Log.ldf";
-            db = sqlServer.Databases[databaseName];
-            RelocateFile rf = new RelocateFile(databaseName, dataFileLocation);
+                    bkp.Action = BackupActionType.Database;
+                    bkp.Database = databaseName;
 
-            sqlRestore.RelocateFiles.Add(new RelocateFile(databaseName, dataFileLocation));
-            sqlRestore.RelocateFiles.Add(new RelocateFile(databaseName + "_log", logFileLocation));
-            sqlRestore.ReplaceDatabase = true;
-            //sqlRestore.Complete += new ServerMessageEventHandler(sqlRestore_Complete);
-            //sqlRestore.PercentCompleteNotification = 10;
-            //sqlRestore.PercentComplete +=
-            //   new PercentCompleteEventHandler(sqlRestore_PercentComplete);
+                    bkp.Devices.AddDevice(filePath, DeviceType.File);
+                    bkp.Incremental = false;
 
-            sqlRestore.SqlRestore(sqlServer);
-            db = sqlServer.Databases[databaseName];
-            db.SetOnline();
-            sqlServer.Refresh();
+                    bkp.SqlBackup(srv);
+
+                    conn.Disconnect();
+                    conn = null;
+                    srv = null;
+                }
+
+                catch (SmoException ex)
+                {
+                    throw new SmoException(ex.Message, ex.InnerException);
+                }
+                catch (IOException ex)
+                {
+                    throw new IOException(ex.Message, ex.InnerException);
+                }
+                return fullPath;
+            }
+
+            public static void RestoreDatabase(string serverName = "(local)", string databaseName = "qlcdv", string filePath = "FullBackUp.bak")
+            {
+
+                conn = new ServerConnection();
+                conn.ServerInstance = serverName;
+                srv = new Server(conn);
+
+                try
+                {
+                    Restore res = new Restore();
+
+                    res.Devices.AddDevice(filePath, DeviceType.File);
+
+                    RelocateFile DataFile = new RelocateFile();
+                    string MDF = res.ReadFileList(srv).Rows[0][1].ToString();
+                    DataFile.LogicalFileName = res.ReadFileList(srv).Rows[0][0].ToString();
+                    DataFile.PhysicalFileName = srv.Databases[databaseName].FileGroups[0].Files[0].FileName;
+
+                    RelocateFile LogFile = new RelocateFile();
+                    string LDF = res.ReadFileList(srv).Rows[1][1].ToString();
+                    LogFile.LogicalFileName = res.ReadFileList(srv).Rows[1][0].ToString();
+                    LogFile.PhysicalFileName = srv.Databases[databaseName].LogFiles[0].FileName;
+
+                    res.RelocateFiles.Add(DataFile);
+                    res.RelocateFiles.Add(LogFile);
+
+                    res.Database = databaseName;
+                    res.NoRecovery = false;
+                    res.ReplaceDatabase = true;
+                    res.SqlRestore(srv);
+                    conn.Disconnect();
+                }
+                catch (SmoException ex)
+                {
+                    throw new SmoException(ex.Message, ex.InnerException);
+                }
+                catch (IOException ex)
+                {
+                    throw new IOException(ex.Message, ex.InnerException);
+                }
+            }
+
+            public static Server Getdatabases(string serverName)
+            {
+                conn = new ServerConnection();
+                conn.ServerInstance = serverName;
+
+                srv = new Server(conn);
+                conn.Disconnect();
+                return srv;
+
+            }
         }
     }
 }
