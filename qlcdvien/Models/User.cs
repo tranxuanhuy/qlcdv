@@ -20,6 +20,7 @@ namespace qlcdvien.Models
 
         [Column(TypeName = "date")]
         [DisplayName("Ngày sinh")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime? DOB { get; set; }
 
         [DisplayName("Giới tính")]

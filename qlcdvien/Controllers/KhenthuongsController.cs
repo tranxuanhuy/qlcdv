@@ -8,6 +8,7 @@ using System.Net;
 using System.Web;
 using System.Web.Hosting;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 using qlcdvien.Models;
 
 namespace qlcdvien.Controllers
@@ -50,9 +51,10 @@ namespace qlcdvien.Controllers
         }
 
         // GET: Khenthuongs/Create
+        [Authorize(Roles = "admin,mod")]
         public ActionResult Create()
         {
-            ViewBag.cdv_id = new SelectList(db.Users, "Id", "name");
+            ViewBag.cdv_id = new SelectList(db.Users.OrderBy(x=>x.name), "Id", "name");
             ViewBag.tochuc_id = new SelectList(db.CapCongDoans, "Capcongdoan_id", "name");
             return View();
         }
@@ -90,6 +92,7 @@ namespace qlcdvien.Controllers
         }
 
         // GET: Khenthuongs/Edit/5
+        [Authorize(Roles = "admin,mod")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -101,6 +104,15 @@ namespace qlcdvien.Controllers
             {
                 return HttpNotFound();
             }
+
+            //phan quyen mod cap tren tro len co quyen
+            var loggedInUser = System.Web.HttpContext.Current.User.Identity.GetUserId();
+
+            if ((!db.CapCongDoans.Find(db.Users.Find(db.Khenthuongs.Find(id).cdv_id).capcongdoan_id).motaphancap.Contains(db.Users.Include(x => x.CapCongDoan).SingleOrDefault(x => x.Id == loggedInUser).CapCongDoan.motaphancap) && User.IsInRole("mod")))
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
+            }
+
             ViewBag.cdv_id = new SelectList(db.Users, "Id", "name", khenthuong.cdv_id);
             //ViewBag.tochuc_id = new SelectList(db.CapCongDoans.OrderBy(s=>s.motaphancap), "Capcongdoan_id", "namephancap", khenthuong.tochuc_id);
             return View(khenthuong);
@@ -147,6 +159,7 @@ namespace qlcdvien.Controllers
         }
 
         // GET: Khenthuongs/Delete/5
+        [Authorize(Roles = "admin,mod")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -157,6 +170,13 @@ namespace qlcdvien.Controllers
             if (khenthuong == null)
             {
                 return HttpNotFound();
+            }
+            //phan quyen mod cap tren tro len co quyen
+            var loggedInUser = System.Web.HttpContext.Current.User.Identity.GetUserId();
+
+            if ((!db.CapCongDoans.Find(db.Users.Find(db.Khenthuongs.Find(id).cdv_id).capcongdoan_id).motaphancap.Contains(db.Users.Include(x => x.CapCongDoan).SingleOrDefault(x => x.Id == loggedInUser).CapCongDoan.motaphancap) && User.IsInRole("mod")))
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
             }
             return View(khenthuong);
         }

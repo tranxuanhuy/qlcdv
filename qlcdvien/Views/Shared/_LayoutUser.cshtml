@@ -363,13 +363,14 @@
         <script type="text/javascript">
             try { ace.settings.check('main-container', 'fixed') } catch (e) { }
         </script>
-
+        @if (Request.IsAuthenticated)
+    {
         <div id="sidebar" class="sidebar                  responsive">
             <script type="text/javascript">
                 try { ace.settings.check('sidebar', 'fixed') } catch (e) { }
             </script>
 
-          
+
 
             <ul class="nav nav-list">
                 <li class="">
@@ -401,7 +402,7 @@
                             <b class="arrow"></b>
                         </li>
 
-                     
+
                     </ul>
                 </li>
 
@@ -424,8 +425,8 @@
                             Công đoàn viên
 
                             @*<span class="badge badge-transparent tooltip-error" title="2 Important Events">
-                        <i class="ace-icon fa fa-exclamation-triangle red bigger-130"></i>
-                    </span>*@
+                                <i class="ace-icon fa fa-exclamation-triangle red bigger-130"></i>
+                            </span>*@
                         </span>
                     </a>
 
@@ -471,7 +472,7 @@
 
                     </ul>
                 </li>
-             
+
                 <li class="">
                     <a href="#" class="dropdown-toggle">
                         <i class="menu-icon fa fa-comment"></i>
@@ -501,7 +502,7 @@
                             <b class="arrow"></b>
                         </li>
 
-                      
+
                     </ul>
                 </li>
 
@@ -514,7 +515,7 @@
                     <b class="arrow"></b>
                 </li>
 
-                
+
 
 
 
@@ -670,7 +671,7 @@
                 try { ace.settings.check('sidebar', 'collapsed') } catch (e) { }
             </script>
         </div>
-
+}
         <div class="main-content">
             <div class="main-content-inner">
 

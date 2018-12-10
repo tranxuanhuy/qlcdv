@@ -71,6 +71,7 @@ namespace qlcdvien.Controllers
         }
 
         // GET: Ykiens/Edit/5
+        [Authorize(Roles = "admin,mod")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -82,7 +83,14 @@ namespace qlcdvien.Controllers
             {
                 return HttpNotFound();
             }
-            
+            //phan quyen mod cap tren tro len co quyen
+            var loggedInUser = System.Web.HttpContext.Current.User.Identity.GetUserId();
+
+            if ((!db.CapCongDoans.Find(db.Users.Find(db.Ykiens.Find(id).nguoidang_id).capcongdoan_id).motaphancap.Contains(db.Users.Include(x => x.CapCongDoan).SingleOrDefault(x => x.Id == loggedInUser).CapCongDoan.motaphancap) && User.IsInRole("mod")))
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
+            }
+
             return View(ykien);
         }
 
@@ -106,6 +114,7 @@ namespace qlcdvien.Controllers
         }
 
         // GET: Ykiens/Delete/5
+        [Authorize(Roles = "admin,mod")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -116,6 +125,13 @@ namespace qlcdvien.Controllers
             if (ykien == null)
             {
                 return HttpNotFound();
+            }
+            //phan quyen mod cap tren tro len co quyen
+            var loggedInUser = System.Web.HttpContext.Current.User.Identity.GetUserId();
+
+            if ((!db.CapCongDoans.Find(db.Users.Find(db.Ykiens.Find(id).nguoidang_id).capcongdoan_id).motaphancap.Contains(db.Users.Include(x => x.CapCongDoan).SingleOrDefault(x => x.Id == loggedInUser).CapCongDoan.motaphancap) && User.IsInRole("mod")))
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
             }
             return View(ykien);
         }

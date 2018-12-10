@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 using qlcdvien.Models;
 
 namespace qlcdvien.Controllers
@@ -39,6 +40,7 @@ namespace qlcdvien.Controllers
         }
 
         // GET: Khenthuongtapthes/Create
+        [Authorize(Roles = "admin,mod")]
         public ActionResult Create()
         {
             ViewBag.tochuc_id = new SelectList(db.CapCongDoans.OrderBy(s=>s.motaphancap), "Capcongdoan_id", "namephancap");
@@ -77,6 +79,7 @@ namespace qlcdvien.Controllers
         }
 
         // GET: Khenthuongtapthes/Edit/5
+        [Authorize(Roles = "admin,mod")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -88,6 +91,14 @@ namespace qlcdvien.Controllers
             {
                 return HttpNotFound();
             }
+            //phan quyen mod cap tren tro len co quyen
+            var loggedInUser = System.Web.HttpContext.Current.User.Identity.GetUserId();
+
+            if ((!db.CapCongDoans.Find(db.Khenthuongtapthes.Find(id).CapCongDoan.Capcongdoan_id).motaphancap.Contains(db.Users.Include(x => x.CapCongDoan).SingleOrDefault(x => x.Id == loggedInUser).CapCongDoan.motaphancap) && User.IsInRole("mod")))
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
+            }
+
             ViewBag.tochuc_id = new SelectList(db.CapCongDoans.OrderBy(s => s.motaphancap), "Capcongdoan_id", "namephancap", khenthuongtapthe.tochuc_id);
             return View(khenthuongtapthe);
         }
@@ -132,6 +143,7 @@ namespace qlcdvien.Controllers
         }
 
         // GET: Khenthuongtapthes/Delete/5
+        [Authorize(Roles = "admin,mod")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -142,6 +154,13 @@ namespace qlcdvien.Controllers
             if (khenthuongtapthe == null)
             {
                 return HttpNotFound();
+            }
+            //phan quyen mod cap tren tro len co quyen
+            var loggedInUser = System.Web.HttpContext.Current.User.Identity.GetUserId();
+
+            if ((!db.CapCongDoans.Find(db.Khenthuongtapthes.Find(id).CapCongDoan.Capcongdoan_id).motaphancap.Contains(db.Users.Include(x => x.CapCongDoan).SingleOrDefault(x => x.Id == loggedInUser).CapCongDoan.motaphancap) && User.IsInRole("mod")))
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
             }
             return View(khenthuongtapthe);
         }
