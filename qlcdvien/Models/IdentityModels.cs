@@ -8,9 +8,11 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using TrackerEnabledDbContext.Identity;
 
 namespace qlcdvien.Models
 {
+    [TrackChanges]
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit https://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser
     {
@@ -117,7 +119,7 @@ namespace qlcdvien.Models
 
     }
  
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
+    public class ApplicationDbContext : TrackerIdentityContext<ApplicationUser>
     {
         
         public virtual DbSet<CapCongDoan> CapCongDoans { get; set; }
@@ -130,7 +132,7 @@ namespace qlcdvien.Models
         public virtual DbSet<QuaTrinhChuyenCongDoan> QuaTrinhChuyenCongDoans { get; set; }
 
         public ApplicationDbContext()
-            : base("Model1", throwIfV1Schema: false)
+            : base("Model1")
         {
         }
        

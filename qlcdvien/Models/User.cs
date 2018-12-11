@@ -8,6 +8,7 @@ using System.Web;
 
 namespace qlcdvien.Models
 {
+    [TrackChanges]
     public class User
     {
         [Key]

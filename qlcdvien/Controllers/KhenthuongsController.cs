@@ -82,7 +82,8 @@ namespace qlcdvien.Controllers
                 }
 
                 db.Khenthuongs.Add(khenthuong);
-                db.SaveChanges();
+                var loggedInUser = System.Web.HttpContext.Current.User.Identity.GetUserName();
+                db.SaveChanges(loggedInUser);
                 return RedirectToAction("Index");
             }
 
@@ -150,7 +151,7 @@ namespace qlcdvien.Controllers
                     khenthuong.scanurl = Request["oldurl"];
                 }
                 db.Entry(khenthuong).State = EntityState.Modified;
-                db.SaveChanges();
+                db.SaveChanges("123");
                 return RedirectToAction("Index");
             }
             ViewBag.cdv_id = new SelectList(db.Users, "Id", "name", khenthuong.cdv_id);
@@ -196,7 +197,7 @@ namespace qlcdvien.Controllers
             }
 
             db.Khenthuongs.Remove(khenthuong);
-            db.SaveChanges();
+            db.SaveChanges(System.Web.HttpContext.Current.User.Identity.GetUserName());
             return RedirectToAction("Index");
         }
 
