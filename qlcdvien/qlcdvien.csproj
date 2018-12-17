@@ -28,6 +28,7 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <TypeScriptToolsVersion>3.0</TypeScriptToolsVersion>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -37,6 +38,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -46,6 +48,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AutoMapper, Version=7.0.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
@@ -156,6 +159,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
@@ -166,12 +170,9 @@
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
-    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Routing" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
@@ -212,14 +213,12 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
-    <Reference Include="TrackerEnabledDbContext, Version=3.6.1.0, Culture=neutral, PublicKeyToken=4f92af0b908c4a0a, processorArchitecture=MSIL">
-      <HintPath>..\packages\TrackerEnabledDbContext.3.6.1\lib\net45\TrackerEnabledDbContext.dll</HintPath>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="TrackerEnabledDbContext.Common, Version=3.6.2.0, Culture=neutral, PublicKeyToken=4f92af0b908c4a0a, processorArchitecture=MSIL">
+      <HintPath>..\packages\TrackerEnabledDbContext.Common.3.6.2-beta\lib\net45\TrackerEnabledDbContext.Common.dll</HintPath>
     </Reference>
-    <Reference Include="TrackerEnabledDbContext.Common, Version=3.6.1.0, Culture=neutral, PublicKeyToken=4f92af0b908c4a0a, processorArchitecture=MSIL">
-      <HintPath>..\packages\TrackerEnabledDbContext.Common.3.6.1\lib\net45\TrackerEnabledDbContext.Common.dll</HintPath>
-    </Reference>
-    <Reference Include="TrackerEnabledDbContext.Identity, Version=3.6.1.0, Culture=neutral, PublicKeyToken=4f92af0b908c4a0a, processorArchitecture=MSIL">
-      <HintPath>..\packages\TrackerEnabledDbContext.Identity.3.6.1\lib\net45\TrackerEnabledDbContext.Identity.dll</HintPath>
+    <Reference Include="TrackerEnabledDbContext.Identity, Version=3.6.2.0, Culture=neutral, PublicKeyToken=4f92af0b908c4a0a, processorArchitecture=MSIL">
+      <HintPath>..\packages\TrackerEnabledDbContext.Identity.3.6.2-beta\lib\net45\TrackerEnabledDbContext.Identity.dll</HintPath>
     </Reference>
     <Reference Include="WebGrease">
       <Private>True</Private>
@@ -578,6 +577,30 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Image\Help\Help.docx" />
+    <Content Include="Image\Khenthuong\0183327234.pdf" />
+    <Content Include="Image\Khenthuong\0184755985.PNG" />
+    <Content Include="Image\Khenthuong\1182624110.jpg" />
+    <Content Include="Image\Khenthuong\1183151161.pdf" />
+    <Content Include="Image\Khenthuong\2180544154.JPG" />
+    <Content Include="Image\Khenthuong\2183346718.pdf" />
+    <Content Include="Image\Khenthuong\2184421493.pdf" />
+    <Content Include="Image\Khenthuong\2185644433.JPG" />
+    <Content Include="Image\Khenthuong\3181015478.JPG" />
+    <Content Include="Image\Khenthuong\3181355251.pdf" />
+    <Content Include="Image\Khenthuong\3181517677.PNG" />
+    <Content Include="Image\Khenthuong\5181148665.JPG" />
+    <Content Include="Image\Khenthuong\5181811205.JPG" />
+    <Content Include="Image\Khenthuong\5182845308.JPG" />
+    <Content Include="Image\Khenthuong\5183143873.PNG" />
+    <Content Include="Image\Khenthuong\5184341921.JPG" />
+    <Content Include="Image\Profile\dxtu03180919453.PNG" />
+    <Content Include="Image\Profile\htdung183145818.PNG" />
+    <Content Include="Image\Profile\htdung184300427.PNG" />
+    <Content Include="Image\Profile\ptnghia181640254.JPG" />
+    <Content Include="Image\Profile\ptnghia184806002.JPG" />
+    <Content Include="Image\Profile\ptnghia184937112.jpg" />
+    <Content Include="Image\Profile\ptnghia185022782.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -616,6 +639,7 @@
     <Content Include="Content\Export-Html-Table-To-Excel-Spreadsheet-using-jQuery-table2excel\package.json" />
     <Content Include="Content\Export-Html-Table-To-Excel-Spreadsheet-using-jQuery-table2excel\README.md" />
     <Content Include="Content\Export-Html-Table-To-Excel-Spreadsheet-using-jQuery-table2excel\table2excel.jquery.json" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -711,8 +735,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Image\Khenthuong\" />
-    <Folder Include="Image\Profile\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

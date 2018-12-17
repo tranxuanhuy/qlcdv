@@ -62,7 +62,7 @@ namespace qlcdvien.Controllers
                 ykien.ngaydang = DateTime.Now;
                 ykien.daDuyet = false;
                 db.Ykiens.Add(ykien);
-                db.SaveChanges();
+                db.SaveChanges(System.Web.HttpContext.Current.User.Identity.GetUserName());
                 return RedirectToAction("Index");
             }
 
@@ -143,7 +143,7 @@ namespace qlcdvien.Controllers
         {
             Ykien ykien = db.Ykiens.Find(id);
             db.Ykiens.Remove(ykien);
-            db.SaveChanges();
+            db.SaveChanges(System.Web.HttpContext.Current.User.Identity.GetUserName());
             return RedirectToAction("Index");
         }
 

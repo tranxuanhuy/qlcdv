@@ -6,6 +6,7 @@ namespace qlcdvien.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
+    [TrackChanges]
     [Table("Ykien")]
     public partial class Ykien
     {
