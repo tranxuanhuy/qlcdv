@@ -32,7 +32,7 @@ namespace qlcdvien.Controllers
         }
 
 
-
+        [Authorize(Roles = "admin")]
         public ActionResult DownloadFile()
         {
 
@@ -46,9 +46,9 @@ namespace qlcdvien.Controllers
 
         }
 
-        
-        
-            public ActionResult RestoreDatabase()
+
+        [Authorize(Roles = "admin")]
+        public ActionResult RestoreDatabase()
             {
                 return View();
             }
