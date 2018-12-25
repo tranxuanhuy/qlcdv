@@ -182,7 +182,7 @@ namespace qlcdvien.Controllers
                 {
                     UserManager.RemovePassword(aspNetUser.Id);
 
-                    UserManager.AddPassword(aspNetUser.Id, "12QWaszx!@"); 
+                    UserManager.AddPassword(aspNetUser.Id, "Abc@1234"); 
                 }
 
                 UserManager.Update(originUser);

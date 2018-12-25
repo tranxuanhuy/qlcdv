@@ -2,7 +2,7 @@
 
 @using (Html.BeginForm())
 {
-    @Html.Label("Cấp CĐ:")
+    @Html.Label("Tìm theo cấp CĐ:")
     @Html.DropDownList("ListItem")
     @*@Html.DropDownList("Gender", new List<SelectListItem>{
         new SelectListItem{ Text="Male", Value="Male"},
@@ -12,7 +12,7 @@
 
 
     <br />
-    @Html.Label("Độ tuổi:")
+    @Html.Label("Tìm theo độ tuổi:")
 
     @Html.TextBox("SearchString2", ViewBag.CurrentFilter2 as string)
 
@@ -28,7 +28,7 @@
     </div>
 }
 <div>
-    Toggle column: <a class="toggle-vis" data-column="	0	">	@Html.DisplayNameFor(model => model.CapCongDoan.name)	</a> -
+    Ẩn/ hiện cột: <a class="toggle-vis" data-column="	0	">	@Html.DisplayNameFor(model => model.CapCongDoan.name)	</a> -
     <a class="toggle-vis" data-column="	1	">	@Html.DisplayNameFor(model => model.name)	</a> -
     <a class="toggle-vis" data-column="	2	">	@Html.DisplayNameFor(model => model.DOB)	</a> -
     <a class="toggle-vis" data-column="	3	">	@Html.DisplayNameFor(model => model.sex)	</a> -
