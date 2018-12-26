@@ -36,7 +36,7 @@
         @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
         <button class="btn btn-info" type="submit">
             <i class="ace-icon fa fa-check bigger-110"></i>
-            Submit
+            Tìm kiếm
         </button>
 
 
@@ -77,10 +77,10 @@
                         {
                             <br />
                             <span>
-                                @Html.ActionLink("Edit", "Edit", new { id = item.Hoatdong_Id })
+                                @Html.ActionLink("Sửa", "Edit", new { id = item.Hoatdong_Id })
                             </span>
-                            <span> @Html.ActionLink("Details", "Details", new { id = item.Hoatdong_Id }) </span>
-                            <span> @Html.ActionLink("Delete", "Delete", new { id = item.Hoatdong_Id })</span>
+                            <span> @Html.ActionLink("Chi tiết", "Details", new { id = item.Hoatdong_Id }) </span>
+                            <span> @Html.ActionLink("Xóa", "Delete", new { id = item.Hoatdong_Id })</span>
                         }
 
                     </td>
