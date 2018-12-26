@@ -1,7 +1,10 @@
-﻿using Microsoft.SqlServer.Management.Common;
+﻿using Ionic.Zip;
+using Ionic.Zlib;
+using Microsoft.SqlServer.Management.Common;
 using Microsoft.SqlServer.Management.Smo;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -81,13 +84,13 @@ namespace qlcdvien.Controllers
 
             public static string BackupDatabase(string serverName="(local)", string databaseName="qlcdv", string filePath= "FullBackUp.bak")
             {
-                
+                BackupImageFolder();
 
                 conn = new ServerConnection();
                 conn.ServerInstance = serverName;
                 srv = new Server(conn);
                 System.IO.File.Delete(srv.BackupDirectory + "\\FullBackUp.bak");
-                string fullPath= srv.BackupDirectory + "\\FullBackUp.bak"; 
+                string fullPath = srv.BackupDirectory + "\\FullBackUp.bak";
                 try
                 {
                     Backup bkp = new Backup();
@@ -116,6 +119,23 @@ namespace qlcdvien.Controllers
                 return fullPath;
             }
 
+            private static void BackupImageFolder()
+            {
+                using (ZipFile zip = new ZipFile())
+                {
+                    string VirtualPath = ConfigurationManager.AppSettings.Get("AttachmentsShowVirtualPath");
+                    string Path = string.Empty;
+                    Path = "certificates" + "/";
+
+                    string folderPath = VirtualPath + Path + Request.Params[0] + "/";
+
+                    zip.CompressionLevel = CompressionLevel.None;
+
+                    zip.AddSelectedFiles(".", Server.MapPath(folderPath), "", false);
+                    zip.Save(Response.OutputStream);
+                }
+            }
+
             public static void RestoreDatabase(string serverName = "(local)", string databaseName = "qlcdv", string filePath = "FullBackUp.bak")
             {
 
@@ -125,6 +145,14 @@ namespace qlcdvien.Controllers
 
                 try
                 {
+                    Database database = new Database(srv, databaseName);
+                    database.Refresh();
+                    srv.KillAllProcesses(databaseName);
+                    database.DatabaseOptions.UserAccess = DatabaseUserAccess.Single;
+                    database.Alter(TerminationClause.RollbackTransactionsImmediately);
+
+
+
                     Restore res = new Restore();
 
                     res.Devices.AddDevice(filePath, DeviceType.File);
@@ -146,6 +174,13 @@ namespace qlcdvien.Controllers
                     res.NoRecovery = false;
                     res.ReplaceDatabase = true;
                     res.SqlRestore(srv);
+
+
+
+                    database.DatabaseOptions.UserAccess = DatabaseUserAccess.Multiple;
+
+
+
                     conn.Disconnect();
                 }
                 catch (SmoException ex)
