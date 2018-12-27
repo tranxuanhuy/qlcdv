@@ -1,7 +1,8 @@
-﻿using Ionic.Zip;
-using Ionic.Zlib;
+﻿
 using Microsoft.SqlServer.Management.Common;
 using Microsoft.SqlServer.Management.Smo;
+using Newtonsoft.Json;
+using qlcdvien.Models;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -10,6 +11,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Hosting;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
+using TrackerEnabledDbContext.Common.Models;
 
 namespace qlcdvien.Controllers
 {
@@ -49,6 +52,24 @@ namespace qlcdvien.Controllers
 
         }
 
+        [Authorize(Roles = "admin")]
+        public ActionResult Log()
+        {
+
+
+            using (ApplicationDbContext ctx = new ApplicationDbContext())
+            {
+                var studentList = ctx.AuditLog
+                       .SqlQuery("Select * from AuditLogs")
+                       .ToList<AuditLog>();
+
+                ViewBag.Funds = studentList;
+
+            }
+
+            return View();
+        }
+
 
         [Authorize(Roles = "admin")]
         public ActionResult RestoreDatabase()
@@ -84,7 +105,7 @@ namespace qlcdvien.Controllers
 
             public static string BackupDatabase(string serverName="(local)", string databaseName="qlcdv", string filePath= "FullBackUp.bak")
             {
-                BackupImageFolder();
+                
 
                 conn = new ServerConnection();
                 conn.ServerInstance = serverName;
@@ -119,22 +140,7 @@ namespace qlcdvien.Controllers
                 return fullPath;
             }
 
-            private static void BackupImageFolder()
-            {
-                using (ZipFile zip = new ZipFile())
-                {
-                    string VirtualPath = ConfigurationManager.AppSettings.Get("AttachmentsShowVirtualPath");
-                    string Path = string.Empty;
-                    Path = "certificates" + "/";
-
-                    string folderPath = VirtualPath + Path + Request.Params[0] + "/";
-
-                    zip.CompressionLevel = CompressionLevel.None;
-
-                    zip.AddSelectedFiles(".", Server.MapPath(folderPath), "", false);
-                    zip.Save(Response.OutputStream);
-                }
-            }
+        
 
             public static void RestoreDatabase(string serverName = "(local)", string databaseName = "qlcdv", string filePath = "FullBackUp.bak")
             {

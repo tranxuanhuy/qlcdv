@@ -309,6 +309,14 @@
     <Compile Include="Migrations\201812111458268_add_TrackerIdentityContext.Designer.cs">
       <DependentUpon>201812111458268_add_TrackerIdentityContext.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812270935121_add_Motangan_hoatdongCd.cs" />
+    <Compile Include="Migrations\201812270935121_add_Motangan_hoatdongCd.Designer.cs">
+      <DependentUpon>201812270935121_add_Motangan_hoatdongCd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812270958599_delete_Motangan_hoatdongCd.cs" />
+    <Compile Include="Migrations\201812270958599_delete_Motangan_hoatdongCd.Designer.cs">
+      <DependentUpon>201812270958599_delete_Motangan_hoatdongCd.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\ApplicationRoleManager.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -736,6 +744,7 @@
     <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
     <Content Include="Views\Shared\_LayoutMod.cshtml" />
     <Content Include="Views\Home\RestoreDatabase.cshtml" />
+    <Content Include="Views\Home\Log.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -783,6 +792,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812111458268_add_TrackerIdentityContext.resx">
       <DependentUpon>201812111458268_add_TrackerIdentityContext.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812270935121_add_Motangan_hoatdongCd.resx">
+      <DependentUpon>201812270935121_add_Motangan_hoatdongCd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812270958599_delete_Motangan_hoatdongCd.resx">
+      <DependentUpon>201812270958599_delete_Motangan_hoatdongCd.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -1,0 +1,52 @@
+﻿@{
+    ViewBag.Title = "Log";
+}
+
+
+
+<table class="table">
+    <tr>
+        <th>
+            AuditLogId
+        </th>
+        <th>
+            UserName
+        </th>
+        <th>
+            EventDateUTC
+        </th>
+        <th>
+            EventType
+        </th>
+        <th>
+            TypeFullName
+        </th>
+        <th>           RecordId</th>
+    </tr>
+
+    @foreach (var item in ViewBag.Funds)
+    {
+        <tr>
+            <td>
+
+                @item.AuditLogId
+            </td>
+            <td>
+                @item.UserName
+            </td>
+            <td>
+                @item.EventDateUTC
+            </td>
+            <td>
+                @item.EventType
+            </td>
+            <td>
+                @item.TypeFullName
+            </td>
+            <td>
+                @item.RecordId
+            </td>
+        </tr>
+    }
+
+</table>
