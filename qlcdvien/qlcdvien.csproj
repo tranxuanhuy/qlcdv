@@ -582,6 +582,7 @@
     <Content Include="Content\Export-Html-Table-To-Excel-Spreadsheet-using-jQuery-table2excel\dist\jquery.table2excel.min.js" />
     <Content Include="Content\Export-Html-Table-To-Excel-Spreadsheet-using-jQuery-table2excel\Gruntfile.js" />
     <Content Include="Content\Export-Html-Table-To-Excel-Spreadsheet-using-jQuery-table2excel\src\jquery.table2excel.js" />
+    <Content Include="Content\logo_mirats.gif" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\simTree.css" />
     <Content Include="Content\simTree.js" />
