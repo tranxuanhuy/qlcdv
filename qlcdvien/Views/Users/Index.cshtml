@@ -12,14 +12,14 @@
 
 
     <br />
-    @Html.Label("Tìm theo độ tuổi:")
+    @Html.Label("Tìm theo độ tuổi: từ ")
 
-    @Html.TextBox("SearchString2", ViewBag.CurrentFilter2 as string)
+    @Html.TextBox("SearchString2", ViewBag.CurrentFilter2 as string, new { style = "height: 25px;width: 100px;" })
 
+    @Html.Label(" đến ")
 
-
-    @Html.TextBox("SearchString3", ViewBag.CurrentFilter3 as string)
-    <button class="btn btn-info" type="submit">
+    @Html.TextBox("SearchString3", ViewBag.CurrentFilter3 as string, new { style = "height: 25px;width: 100px;" })
+    <button type="submit">
         <i class="ace-icon fa fa-check bigger-110"></i>
         Tìm kiếm
     </button>
